@@ -19,9 +19,11 @@ package com.naixwf.article.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.naixwf.article.service.HelloWorldService;
+
+import java.util.Date;
+import java.util.Map;
 
 @Controller
 public class SampleController {
@@ -30,8 +32,9 @@ public class SampleController {
 	private HelloWorldService helloWorldService;
 
 	@RequestMapping("/")
-	@ResponseBody
-	public String helloWorld() {
-		return this.helloWorldService.getHelloMessage();
+	public String welcome(Map<String, Object> model) {
+		model.put("time", new Date());
+		model.put("message", "abc");
+		return "index";
 	}
 }
