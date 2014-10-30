@@ -16,27 +16,25 @@
 
 package com.naixwf.article.web;
 
+import com.naixwf.article.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.naixwf.article.service.HelloWorldService;
 
 import java.util.Date;
 import java.util.Map;
 
 /**
- * 分类相关操作入口
- * 题目(2) 文档的分类管理和浏览
+ * 角色相关入口
+ * 角色表直接在数据库中维护，暂不提供维护页面
+ * 题目(4) 查看权限的管理
+ *
  * TODO
- * 分类列表
- * 新增分类
- * 修改分类
- * 删除分类
+ * 调整人员的角色
  */
 @Controller
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/role")
+public class RoleController {
 
 	@Autowired
 	private HelloWorldService helloWorldService;

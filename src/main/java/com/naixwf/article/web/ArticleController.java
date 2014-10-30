@@ -16,27 +16,27 @@
 
 package com.naixwf.article.web;
 
+import com.naixwf.article.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import com.naixwf.article.service.HelloWorldService;
 
 import java.util.Date;
 import java.util.Map;
 
 /**
- * 分类相关操作入口
- * 题目(2) 文档的分类管理和浏览
+ * 文档相关操作入口
+ *
+ * 题目(1) 实现文档管理功能(增删改)
  * TODO
- * 分类列表
- * 新增分类
- * 修改分类
- * 删除分类
+ * 文档列表
+ * 新增文档
+ * 修改文档
+ * 删除文档
  */
 @Controller
-@RequestMapping("/category")
-public class CategoryController {
+@RequestMapping("/article")
+public class ArticleController {
 
 	@Autowired
 	private HelloWorldService helloWorldService;
