@@ -26,7 +26,7 @@ import java.util.Date;
 import java.util.Map;
 
 @Controller
-public class SampleController {
+public class CategoryController {
 
 	@Autowired
 	private HelloWorldService helloWorldService;
