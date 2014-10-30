@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry
+            location="/Users/wangfei/.m2/repository/mysql/mysql-connector-java/5.1.15/mysql-connector-java-5.1.15.jar"/>
+
+    <context id="ormgenerator" targetRuntime="MyBatis3">
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost/article?autoReconnect:true;useUnicode:true;characterEncoding:UTF-8"
+                        userId="root"
+                        password="87654312"/>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成数据表对应的model-->
+        <javaModelGenerator targetProject="src/main/java"
+                            targetPackage="com.naixwf.article.domain">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- SqlMap XML Files -->
+        <sqlMapGenerator targetProject="src/main/resources"
+                         targetPackage="com.naixwf.article.persistence">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!-- 生成Mapper java文件-->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetProject="src/main/java"
+                             targetPackage="com.naixwf.article.persistence">
+            <property name="enableSubPackages" value="true"/>
+            <property name="exampleMethodVisibility" value="default"/>
+        </javaClientGenerator>
+
+        <table tableName="article" domainObjectName="Article">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="category" domainObjectName="Category">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="role" domainObjectName="Role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="user" domainObjectName="User">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

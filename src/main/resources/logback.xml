@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{HH:mm:ss.SSS} %-5level \(%F:%L\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/article.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/article.%d{yyyy-MM-dd}.log</fileNamePattern>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%date %-5level \(%F:%L\) - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 3rdparty Loggers -->
+    <logger name="org.springframework.core" level="INFO"/>
+    <logger name="org.springframework.beans" level="INFO"/>
+    <logger name="org.springframework.context" level="INFO"/>
+    <logger name="org.springframework.web" level="INFO"/>
+
+    <!-- project default level -->
+    <logger name="com.naixwf" level="DEBUG"/>
+
+    <!--整体提升mybatis log等级，精简debug时的console输出-->
+    <logger name="org.mybatis" level="INFO"/>
+
+
+    <!--<logger name="org.apache.shiro" level="TRACE"/>-->
+
+    <root level="WARN">
+        <appender-ref ref="console"/>
+        <appender-ref ref="rollingFile"/>
+    </root>
+</configuration>

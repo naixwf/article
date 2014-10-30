@@ -16,17 +16,18 @@
 
 package com.naixwf.article.service;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+import com.naixwf.article.domain.Article;
 
-@Component
-public class HelloWorldService {
+import java.util.List;
 
-	@Value("${name:World}")
-	private String name;
-
-	public String getHelloMessage() {
-		return "Hello " + this.name;
-	}
+/**
+ * 文章相关的操作
+ */
+public interface ArticleService {
+	/**
+	 * 获取所有文章
+	 * @return
+	 */
+	List<Article> getAll();
 
 }

@@ -16,18 +16,61 @@
 
 package com.naixwf.article;
 
+import com.alibaba.druid.pool.DruidDataSource;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)//TODO why exclude
 @ComponentScan
+@MapperScan("com.naixwf.article.persistence")
 public class ArticleApplication {
 
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(ArticleApplication.class, args);
+	}
+
+	@Bean
+	public SqlSessionFactory sqlSessionFactoryBean() throws Exception {
+
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setDataSource(dataSource());
+
+		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
+		sqlSessionFactoryBean
+				.setMapperLocations(resolver.getResources("classpath:com/naixwf/article/persistence/*.xml"));
+
+		return sqlSessionFactoryBean.getObject();
+	}
+
+	@Bean(destroyMethod = "close")
+	public DataSource dataSource() {
+
+		Properties properties = new Properties();
+		String url = "jdbc:mysql://localhost/article";
+		properties = new Properties();
+		properties.setProperty("user", "root");
+		properties.setProperty("password", "87654312");
+		properties.setProperty("useUnicode", "true");
+		properties.setProperty("characterEncoding", "UTF8");
+
+		//druid via https://github.com/alibaba/druid/wiki/%E9%A6%96%E9%A1%B5
+		DruidDataSource ds = new DruidDataSource();
+		ds.setUrl(url);
+		ds.setConnectProperties(properties);
+
+		return ds;
 	}
 
 }

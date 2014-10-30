@@ -16,10 +16,14 @@
 
 package com.naixwf.article.web;
 
+import com.naixwf.article.domain.Article;
+import com.naixwf.article.service.ArticleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +40,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/article")
 public class ArticleController {
+	@Resource
+	private ArticleService articleService;
 
 	/**
 	 * 文章列表
@@ -44,7 +50,8 @@ public class ArticleController {
 	 */
 	@RequestMapping
 	public String list(Map<String, Object> model) {
-		//TODO stub
+		List<Article> list = articleService.getAll();
+		model.put("articleList", list);
 		return "article/list";
 	}
 
