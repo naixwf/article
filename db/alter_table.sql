@@ -38,3 +38,9 @@ create table `category`(
  id int(11) not null AUTO_INCREMENT primary key COMMENT '自增主键',
  categroy_name varchar(64) not null COMMENT '类别名称'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文章类别表';
+
+insert into category select 1,'开发';
+insert into category select 2,'运维';
+insert into category select 3,'软件工程';
+
+

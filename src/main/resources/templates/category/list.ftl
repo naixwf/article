@@ -14,7 +14,7 @@
 <#list categoryList as item>
     <tr>
         <td>#{item.id}</td>
-        <td>${item.name}</td>
+        <td>${item.categroyName}</td>
     </tr>
 </#list>
 </table>
