@@ -30,4 +30,28 @@ public interface ArticleService {
 	 */
 	List<Article> getAll();
 
+	/**
+	 * 新增article
+	 * @param article
+	 */
+	void add(Article article);
+
+	/**
+	 * 根据id获取文档
+	 * @param articleId
+	 * @return
+	 */
+	Article getById(int articleId);
+
+	/**
+	 * 修改文档
+	 * @param article
+	 */
+	void modify(Article article);
+
+	/**
+	 * 删除制定id的文档
+	 * @param articleId
+	 */
+	void delete(int articleId);
 }

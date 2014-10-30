@@ -60,7 +60,8 @@ public class ArticleController {
 	 */
 	@RequestMapping("/view")
 	public String view(Integer articleId, Map<String, Object> model) {
-		//TODO stub
+		Article article = articleService.getById(articleId);
+		model.put("article", article);
 		return "article/view";
 	}
 
@@ -69,14 +70,14 @@ public class ArticleController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Map<String, Object> model) {
-		//TODO stub
 		return "article/add";
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postAdd(Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+	public String postAdd(Article article) {
+		//TODO validate param
+		articleService.add(article);
+		return "redirect:view?articleId=" + article.getId();
 	}
 
 	/**
@@ -84,23 +85,24 @@ public class ArticleController {
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Integer articleId, Map<String, Object> model) {
-		//TODO stub
+		Article article = articleService.getById(articleId);
+		model.put("article", article);
 		return "article/edit";
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String postEdit(Integer articleId, Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+	public String postEdit(Article article) {
+		articleService.modify(article);
+		return "redirect:view?articleId=" + article.getId();
 	}
 
 	/**
-	 * 删除一篇文档 TODO 权限
+	 * 删除一篇文档
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String postDelete(Integer articleId, Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+	public String postDelete(Integer articleId) {
+		articleService.delete(articleId);
+		return "redirect:/article";//TODO contextPath
 	}
 
 }
