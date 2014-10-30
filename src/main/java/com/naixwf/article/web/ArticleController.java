@@ -39,7 +39,6 @@ public class ArticleController {
 	public String list(Map<String, Object> model) {
 		List<Article> list = articleService.getAll();
 		model.put("articleList", list);
-		LOGGER.debug("articleController.list invoked");
 		return "article/list";
 	}
 
