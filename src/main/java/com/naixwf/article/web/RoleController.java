@@ -20,6 +20,8 @@ import com.naixwf.article.service.HelloWorldService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
 import java.util.Map;
@@ -36,13 +38,26 @@ import java.util.Map;
 @RequestMapping("/role")
 public class RoleController {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
-
-	@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
+	/**
+	 * 用户-角色列表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping
+	public String list(Map<String, Object> model) {
 		model.put("time", new Date());
 		model.put("message", "abc");
 		return "index";
+	}
+
+	/**
+	 * 修改某人的角色
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public
+	@ResponseBody
+	String postEdit(Integer userId, Integer roleId, Map<String, Object> model) {
+		//TODO stub 重定向到view
+		return null;
 	}
 }

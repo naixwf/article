@@ -16,13 +16,12 @@
 
 package com.naixwf.article.web;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.naixwf.article.service.HelloWorldService;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -38,13 +37,49 @@ import java.util.Map;
 @RequestMapping("/category")
 public class CategoryController {
 
-	@Autowired
-	private HelloWorldService helloWorldService;
-
-	@RequestMapping("/")
-	public String welcome(Map<String, Object> model) {
-		model.put("time", new Date());
-		model.put("message", "abc");
-		return "index";
+	/**
+	 * 分类列表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping
+	public String list(Map<String, Object> model) {
+		//TODO stub
+		return "article/list";
 	}
+
+	/**
+	 * 新增一个分类
+	 */
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public
+	@ResponseBody
+	String
+	postAdd(Map<String, Object> model) {
+		//TODO stub 重定向到view
+		return null;
+	}
+
+	/**
+	 * 修改一个分类
+	 */
+	@RequestMapping(value = "/edit", method = RequestMethod.POST)
+	public
+	@ResponseBody
+	String postEdit(Integer categoryId, Map<String, Object> model) {
+		//TODO stub 重定向到view
+		return null;
+	}
+
+	/**
+	 * 删除一个分类 TODO 权限
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public
+	@ResponseBody
+	String postDelete(Integer categoryId, Map<String, Object> model) {
+		//TODO stub 重定向到view
+		return null;
+	}
+
 }
