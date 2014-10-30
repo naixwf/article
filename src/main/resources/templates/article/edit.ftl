@@ -14,5 +14,7 @@
     secretLevel:<input name="secretLevel" value="#{article.secretLevel}"/><br/>
     <input type="submit" value="submit"/>
 </form>
+
+<a href="#">删除</a>
 </body>
 </html>

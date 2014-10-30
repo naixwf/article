@@ -16,12 +16,16 @@
 
 package com.naixwf.article.web;
 
+import com.naixwf.article.domain.Category;
+import com.naixwf.article.service.CategoryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,6 +40,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
+	@Resource
+	private CategoryService categoryService;
 
 	/**
 	 * 分类列表
@@ -44,8 +50,9 @@ public class CategoryController {
 	 */
 	@RequestMapping
 	public String list(Map<String, Object> model) {
-		//TODO stub
-		return "article/list";
+		List<Category> list = categoryService.getAll();
+		model.put("categoryList", list);
+		return "category/list";
 	}
 
 	/**
@@ -55,9 +62,9 @@ public class CategoryController {
 	public
 	@ResponseBody
 	String
-	postAdd(Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+	postAdd(Category category, Map<String, Object> model) {
+		categoryService.add(category);
+		return "category postAdd completed: categoryId=" + category.getId();
 	}
 
 	/**
@@ -66,9 +73,9 @@ public class CategoryController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public
 	@ResponseBody
-	String postEdit(Integer categoryId, Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+	String postEdit(Category category, Map<String, Object> model) {
+		categoryService.modify(category);
+		return "category postAdd completed: categoryId=" + category.getId();
 	}
 
 	/**
@@ -78,8 +85,8 @@ public class CategoryController {
 	public
 	@ResponseBody
 	String postDelete(Integer categoryId, Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+		categoryService.delete(categoryId);
+		return "category postDelete completed: categoryId=" + categoryId;
 	}
 
 }

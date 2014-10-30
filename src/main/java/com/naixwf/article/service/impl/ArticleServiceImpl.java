@@ -33,6 +33,8 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void add(Article article) {
+
+		article.setId(null);
 		//TODO 从threadlocal 获取登陆的用户
 		Integer userId = 0;
 		Date now = new Date();
