@@ -16,16 +16,20 @@
 
 package com.naixwf.article.web;
 
+import com.naixwf.article.domain.User;
+import com.naixwf.article.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
- * 角色相关入口
+ * 用户、角色相关入口
  * 角色表直接在数据库中维护，暂不提供维护页面
  * 题目(4) 查看权限的管理
  *
@@ -33,8 +37,10 @@ import java.util.Map;
  * 调整人员的角色
  */
 @Controller
-@RequestMapping("/role")
-public class RoleController {
+@RequestMapping("/user")
+public class UserController {
+	@Resource
+	private UserService userService;
 
 	/**
 	 * 用户-角色列表
@@ -43,9 +49,9 @@ public class RoleController {
 	 */
 	@RequestMapping
 	public String list(Map<String, Object> model) {
-		model.put("time", new Date());
-		model.put("message", "abc");
-		return "index";
+		List<User> list = userService.getAll();
+		model.put("userList", list);
+		return "user/list";
 	}
 
 	/**
@@ -55,7 +61,7 @@ public class RoleController {
 	public
 	@ResponseBody
 	String postEdit(Integer userId, Integer roleId, Map<String, Object> model) {
-		//TODO stub 重定向到view
-		return null;
+		userService.modifyRole(userId, roleId);
+		return "postEdit user role completed: userId=" + userId;
 	}
 }
