@@ -26,7 +26,7 @@ create table `article`(
   title varchar(255) not null COMMENT '标题，不能超过255',
   content text not null COMMENT '内容',
   category_id int(11) not null COMMENT '文章分类',
-  secret_level int(11) not null default 0 COMMENT '文章保密级别, 与role.secret_level有业务联系',
+  secret_level int(11) not null default 0 COMMENT '文章保密级别',
   creator_id int(11) not null COMMENT '创建者id，refer user.id',
   create_time datetime not null COMMENT '创建时间',
   modifier_id int(11) not null COMMENT '最后修改人id,refer user.id',

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Error</title>
+    <title>哦呦，出错了</title>
 </head>
 <body>
 <div>
-    There was an unexpected error [${error} : ${status}]
+    哦呦，出错了~ [${error} : ${status}]
 </div>
 </body>
 </html>
