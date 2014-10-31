@@ -2,6 +2,7 @@ package com.naixwf.article.web;
 
 import com.naixwf.article.domain.Category;
 import com.naixwf.article.service.CategoryService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -15,12 +16,15 @@ import java.util.Map;
 /**
  * 分类相关操作入口
  * 题目(2) 文档的分类管理和浏览
- * TODO
+ *
  * 分类列表
  * 新增分类
  * 修改分类
  * 删除分类
+ *
+ * 权限：只有ROLE_ADMIN可以访问
  */
+@Secured({ "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -46,7 +50,7 @@ public class CategoryController {
 	public
 	@ResponseBody
 	String
-	postAdd(Category category, Map<String, Object> model) {
+	postAdd(Category category) {
 		categoryService.add(category);
 		return "category postAdd completed: categoryId=" + category.getId();
 	}
@@ -57,18 +61,18 @@ public class CategoryController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public
 	@ResponseBody
-	String postEdit(Category category, Map<String, Object> model) {
+	String postEdit(Category category) {
 		categoryService.modify(category);
 		return "category postAdd completed: categoryId=" + category.getId();
 	}
 
 	/**
-	 * 删除一个分类 TODO 权限
+	 * 删除一个分类
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public
 	@ResponseBody
-	String postDelete(Integer categoryId, Map<String, Object> model) {
+	String postDelete(Integer categoryId) {
 		categoryService.delete(categoryId);
 		return "category postDelete completed: categoryId=" + categoryId;
 	}

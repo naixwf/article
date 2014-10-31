@@ -2,6 +2,7 @@ package com.naixwf.article.web;
 
 import com.naixwf.article.domain.User;
 import com.naixwf.article.service.UserService;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,11 +18,13 @@ import java.util.Map;
  * 角色表直接在数据库中维护，暂不提供维护页面
  * 题目(4) 查看权限的管理
  *
- * TODO
  * 调整人员的角色
+ *
+ * 权限：只有ROLE_ADMIN可以使用
  */
 @Controller
 @RequestMapping("/user")
+@Secured({ "ROLE_ADMIN" })
 public class UserController {
 	@Resource
 	private UserService userService;

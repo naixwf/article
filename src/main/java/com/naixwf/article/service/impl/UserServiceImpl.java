@@ -4,10 +4,16 @@ import com.naixwf.article.domain.User;
 import com.naixwf.article.domain.UserExample;
 import com.naixwf.article.persistence.UserMapper;
 import com.naixwf.article.service.UserService;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.GrantedAuthorityImpl;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 

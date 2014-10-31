@@ -4,6 +4,7 @@ import com.naixwf.article.domain.Article;
 import com.naixwf.article.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -55,11 +56,13 @@ public class ArticleController {
 	/**
 	 * 新增一篇文章
 	 */
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Map<String, Object> model) {
 		return "article/add";
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(Article article) {
 		//TODO validate param
@@ -70,6 +73,7 @@ public class ArticleController {
 	/**
 	 * 修改一篇文章
 	 */
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Integer articleId, Map<String, Object> model) {
 		Article article = articleService.getById(articleId);
@@ -77,6 +81,7 @@ public class ArticleController {
 		return "article/edit";
 	}
 
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(Article article) {
 		articleService.modify(article);
@@ -86,6 +91,7 @@ public class ArticleController {
 	/**
 	 * 删除一篇文档
 	 */
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer articleId) {
 		articleService.delete(articleId);

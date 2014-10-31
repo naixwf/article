@@ -1,6 +1,7 @@
 package com.naixwf.article.service;
 
 import com.naixwf.article.domain.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 

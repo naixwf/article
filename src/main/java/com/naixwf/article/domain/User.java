@@ -1,5 +1,9 @@
 package com.naixwf.article.domain;
 
+import org.springframework.security.core.GrantedAuthority;
+
+import java.util.Collection;
+
 public class User {
     private Integer id;
 
@@ -11,7 +15,9 @@ public class User {
 
     private Boolean isAdmin;
 
-    public Integer getId() {
+
+
+	public Integer getId() {
         return id;
     }
 

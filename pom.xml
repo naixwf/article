@@ -32,7 +32,6 @@
     </properties>
     <dependencies>
 
-
         <!-- Persistence -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -94,6 +93,12 @@
             <scope>test</scope>
         </dependency>
         <!-- init -->
+
+        <!-- spring security-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
