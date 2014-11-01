@@ -1,0 +1,4 @@
+<!-- TODO 方便调试，后续移到java里配置-->
+<sitemesh>
+    <mapping path="/*" decorator="/decorators/common.ftl"/>
+</sitemesh>

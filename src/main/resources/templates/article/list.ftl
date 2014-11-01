@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>文档列表</title>
-</head>
+<title>文档列表</title>
 <body>
-
-
 <table>
     <tr>
         <th>id</th>
@@ -28,6 +21,4 @@
     </tr>
 </#list>
 </table>
-
 </body>
-</html>

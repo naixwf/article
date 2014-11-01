@@ -4,7 +4,6 @@ import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleExample;
 import com.naixwf.article.persistence.ArticleMapper;
 import com.naixwf.article.service.ArticleService;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 

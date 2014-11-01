@@ -29,8 +29,16 @@
         <mybatis-spring.version>1.2.2</mybatis-spring.version>
         <druid.version>1.0.4</druid.version>
 
+        <sitemesh.version>3.0.0</sitemesh.version>
+
     </properties>
     <dependencies>
+        <!-- sitemesh -->
+        <dependency>
+            <groupId>org.sitemesh</groupId>
+            <artifactId>sitemesh</artifactId>
+            <version>${sitemesh.version}</version>
+        </dependency>
 
         <!-- Persistence -->
         <dependency>

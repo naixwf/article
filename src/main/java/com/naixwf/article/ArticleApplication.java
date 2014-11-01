@@ -20,15 +20,20 @@ import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
+import javax.servlet.Filter;
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 @Configuration
@@ -71,6 +76,19 @@ public class ArticleApplication {
 		ds.setConnectProperties(properties);
 
 		return ds;
+	}
+
+	@Bean
+	public FilterRegistrationBean sitemeshFilter() {
+		Filter sitemeshFilter = new ConfigurableSiteMeshFilter();
+
+		FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
+		filterRegBean.setFilter(sitemeshFilter);
+//		List<String> urlPatterns = new ArrayList<String>();
+//		urlPatterns.add("/*");
+//		filterRegBean.setUrlPatterns(urlPatterns);
+
+		return filterRegBean;
 	}
 
 }

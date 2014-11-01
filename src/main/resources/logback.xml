@@ -28,9 +28,6 @@
     <!--整体提升mybatis log等级，精简debug时的console输出-->
     <logger name="org.mybatis" level="INFO"/>
 
-
-    <!--<logger name="org.apache.shiro" level="TRACE"/>-->
-
     <root level="WARN">
         <appender-ref ref="console"/>
         <appender-ref ref="rollingFile"/>
