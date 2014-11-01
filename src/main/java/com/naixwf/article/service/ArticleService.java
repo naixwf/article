@@ -17,6 +17,7 @@
 package com.naixwf.article.service;
 
 import com.naixwf.article.domain.Article;
+import com.naixwf.article.domain.ArticleWithBLOBs;
 
 import java.util.List;
 
@@ -34,7 +35,7 @@ public interface ArticleService {
 	 * 新增article
 	 * @param article
 	 */
-	void add(Article article);
+	void add(ArticleWithBLOBs article);
 
 	/**
 	 * 根据id获取文档
@@ -47,7 +48,7 @@ public interface ArticleService {
 	 * 修改文档
 	 * @param article
 	 */
-	void modify(Article article);
+	void modify(ArticleWithBLOBs article);
 
 	/**
 	 * 删除制定id的文档

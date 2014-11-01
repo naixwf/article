@@ -6,13 +6,14 @@
     <result column="title" property="title" jdbcType="VARCHAR" />
     <result column="category_id" property="categoryId" jdbcType="INTEGER" />
     <result column="secret_level" property="secretLevel" jdbcType="INTEGER" />
-    <result column="creator_id" property="creatorId" jdbcType="INTEGER" />
+    <result column="creator_id" property="creatorId" jdbcType="VARCHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
-    <result column="modifier_id" property="modifierId" jdbcType="INTEGER" />
+    <result column="modifier_id" property="modifierId" jdbcType="VARCHAR" />
     <result column="modify_time" property="modifyTime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.naixwf.article.domain.Article" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.naixwf.article.domain.ArticleWithBLOBs" extends="BaseResultMap" >
     <result column="content" property="content" jdbcType="LONGVARCHAR" />
+    <result column="content_html" property="contentHtml" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -76,7 +77,7 @@
     id, title, category_id, secret_level, creator_id, create_time, modifier_id, modify_time
   </sql>
   <sql id="Blob_Column_List" >
-    content
+    content, content_html
   </sql>
   <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.naixwf.article.domain.ArticleExample" >
     select
@@ -126,18 +127,20 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.naixwf.article.domain.Article" >
+  <insert id="insert" parameterType="com.naixwf.article.domain.ArticleWithBLOBs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into article (title, category_id, secret_level, 
       creator_id, create_time, modifier_id, 
-      modify_time, content)
+      modify_time, content, content_html
+      )
     values (#{title,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{secretLevel,jdbcType=INTEGER}, 
-      #{creatorId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=INTEGER}, 
-      #{modifyTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+      #{creatorId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{modifierId,jdbcType=VARCHAR}, 
+      #{modifyTime,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR}, #{contentHtml,jdbcType=LONGVARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.naixwf.article.domain.Article" >
+  <insert id="insertSelective" parameterType="com.naixwf.article.domain.ArticleWithBLOBs" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
@@ -167,6 +170,9 @@
       <if test="content != null" >
         content,
       </if>
+      <if test="contentHtml != null" >
+        content_html,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="title != null" >
@@ -179,19 +185,22 @@
         #{secretLevel,jdbcType=INTEGER},
       </if>
       <if test="creatorId != null" >
-        #{creatorId,jdbcType=INTEGER},
+        #{creatorId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="modifierId != null" >
-        #{modifierId,jdbcType=INTEGER},
+        #{modifierId,jdbcType=VARCHAR},
       </if>
       <if test="modifyTime != null" >
         #{modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="content != null" >
         #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="contentHtml != null" >
+        #{contentHtml,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -217,19 +226,22 @@
         secret_level = #{record.secretLevel,jdbcType=INTEGER},
       </if>
       <if test="record.creatorId != null" >
-        creator_id = #{record.creatorId,jdbcType=INTEGER},
+        creator_id = #{record.creatorId,jdbcType=VARCHAR},
       </if>
       <if test="record.createTime != null" >
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.modifierId != null" >
-        modifier_id = #{record.modifierId,jdbcType=INTEGER},
+        modifier_id = #{record.modifierId,jdbcType=VARCHAR},
       </if>
       <if test="record.modifyTime != null" >
         modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.contentHtml != null" >
+        content_html = #{record.contentHtml,jdbcType=LONGVARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -242,11 +254,12 @@
       title = #{record.title,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       secret_level = #{record.secretLevel,jdbcType=INTEGER},
-      creator_id = #{record.creatorId,jdbcType=INTEGER},
+      creator_id = #{record.creatorId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      modifier_id = #{record.modifierId,jdbcType=INTEGER},
+      modifier_id = #{record.modifierId,jdbcType=VARCHAR},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
-      content = #{record.content,jdbcType=LONGVARCHAR}
+      content = #{record.content,jdbcType=LONGVARCHAR},
+      content_html = #{record.contentHtml,jdbcType=LONGVARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -257,15 +270,15 @@
       title = #{record.title,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       secret_level = #{record.secretLevel,jdbcType=INTEGER},
-      creator_id = #{record.creatorId,jdbcType=INTEGER},
+      creator_id = #{record.creatorId,jdbcType=VARCHAR},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      modifier_id = #{record.modifierId,jdbcType=INTEGER},
+      modifier_id = #{record.modifierId,jdbcType=VARCHAR},
       modify_time = #{record.modifyTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.naixwf.article.domain.Article" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.naixwf.article.domain.ArticleWithBLOBs" >
     update article
     <set >
       <if test="title != null" >
@@ -278,13 +291,13 @@
         secret_level = #{secretLevel,jdbcType=INTEGER},
       </if>
       <if test="creatorId != null" >
-        creator_id = #{creatorId,jdbcType=INTEGER},
+        creator_id = #{creatorId,jdbcType=VARCHAR},
       </if>
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="modifierId != null" >
-        modifier_id = #{modifierId,jdbcType=INTEGER},
+        modifier_id = #{modifierId,jdbcType=VARCHAR},
       </if>
       <if test="modifyTime != null" >
         modify_time = #{modifyTime,jdbcType=TIMESTAMP},
@@ -292,19 +305,23 @@
       <if test="content != null" >
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
+      <if test="contentHtml != null" >
+        content_html = #{contentHtml,jdbcType=LONGVARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.naixwf.article.domain.Article" >
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.naixwf.article.domain.ArticleWithBLOBs" >
     update article
     set title = #{title,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       secret_level = #{secretLevel,jdbcType=INTEGER},
-      creator_id = #{creatorId,jdbcType=INTEGER},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modifier_id = #{modifierId,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP},
-      content = #{content,jdbcType=LONGVARCHAR}
+      content = #{content,jdbcType=LONGVARCHAR},
+      content_html = #{contentHtml,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.naixwf.article.domain.Article" >
@@ -312,9 +329,9 @@
     set title = #{title,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       secret_level = #{secretLevel,jdbcType=INTEGER},
-      creator_id = #{creatorId,jdbcType=INTEGER},
+      creator_id = #{creatorId,jdbcType=VARCHAR},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      modifier_id = #{modifierId,jdbcType=INTEGER},
+      modifier_id = #{modifierId,jdbcType=VARCHAR},
       modify_time = #{modifyTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

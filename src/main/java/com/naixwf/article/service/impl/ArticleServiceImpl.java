@@ -2,12 +2,17 @@ package com.naixwf.article.service.impl;
 
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleExample;
+import com.naixwf.article.domain.ArticleWithBLOBs;
 import com.naixwf.article.persistence.ArticleMapper;
 import com.naixwf.article.service.ArticleService;
+import org.markdown4j.Markdown4jProcessor;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -23,8 +28,7 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<Article> getAll() {
 		ArticleExample e = new ArticleExample();
-		List<Article> list = articleMapper.selectByExampleWithBLOBs(e);
-
+		List<Article> list = articleMapper.selectByExample(e);
 		if (CollectionUtils.isEmpty(list)) {
 			list = Collections.EMPTY_LIST;
 		}
@@ -32,17 +36,26 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void add(Article article) {
+	public void add(ArticleWithBLOBs article) {
 
 		article.setId(null);
-		//TODO 从threadlocal 获取登陆的用户
-		Integer userId = 0;
+
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+				.getAuthentication()
+				.getPrincipal();
 		Date now = new Date();
 
-		article.setCreatorId(userId);
-		article.setModifierId(userId);
+		article.setCreatorId(userDetails.getUsername());
+		article.setModifierId(userDetails.getUsername());
 		article.setCreateTime(now);
 		article.setModifyTime(now);
+
+		try {
+			String html = new Markdown4jProcessor().process(article.getContent());
+			article.setContentHtml(html);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
 		articleMapper.insert(article);
 	}
@@ -53,15 +66,24 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public void modify(Article article) {
-		Integer userId = 0;//TODO 从TreadLocal取数据
+	public void modify(ArticleWithBLOBs article) {
+		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+				.getAuthentication()
+				.getPrincipal();
 		Date now = new Date();
 
 		article.setCreatorId(null);
 		article.setCreateTime(null);
 
-		article.setModifierId(userId);
+		article.setModifierId(userDetails.getUsername());
 		article.setModifyTime(now);
+
+		try {
+			String html = new Markdown4jProcessor().process(article.getContent());
+			article.setContentHtml(html);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 
 		articleMapper.updateByPrimaryKeySelective(article);
 	}

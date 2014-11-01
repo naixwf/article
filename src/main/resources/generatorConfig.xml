@@ -51,10 +51,10 @@
         <table tableName="category" domainObjectName="Category">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="role" domainObjectName="Role">
+        <table tableName="authorities" domainObjectName="Authority">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="user" domainObjectName="User">
+        <table tableName="users" domainObjectName="User">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 

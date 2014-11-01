@@ -30,9 +30,16 @@
         <druid.version>1.0.4</druid.version>
 
         <sitemesh.version>3.0.0</sitemesh.version>
-
+        <markdown4j.version>2.2-cj-1.0</markdown4j.version>
     </properties>
     <dependencies>
+
+        <dependency>
+            <groupId>org.commonjava.googlecode.markdown4j</groupId>
+            <artifactId>markdown4j</artifactId>
+            <version>${markdown4j.version}</version>
+        </dependency>
+
         <!-- sitemesh -->
         <dependency>
             <groupId>org.sitemesh</groupId>

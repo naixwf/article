@@ -1,9 +1,5 @@
 package com.naixwf.article.domain;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import java.util.Collection;
-
 public class User {
     private Integer id;
 
@@ -11,13 +7,9 @@ public class User {
 
     private String password;
 
-    private Integer roleId;
+    private Boolean enabled;
 
-    private Boolean isAdmin;
-
-
-
-	public Integer getId() {
+    public Integer getId() {
         return id;
     }
 
@@ -41,19 +33,11 @@ public class User {
         this.password = password == null ? null : password.trim();
     }
 
-    public Integer getRoleId() {
-        return roleId;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setRoleId(Integer roleId) {
-        this.roleId = roleId;
-    }
-
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }

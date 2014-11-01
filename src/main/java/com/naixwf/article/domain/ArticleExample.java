@@ -365,52 +365,62 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdEqualTo(Integer value) {
+        public Criteria andCreatorIdEqualTo(String value) {
             addCriterion("creator_id =", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdNotEqualTo(Integer value) {
+        public Criteria andCreatorIdNotEqualTo(String value) {
             addCriterion("creator_id <>", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdGreaterThan(Integer value) {
+        public Criteria andCreatorIdGreaterThan(String value) {
             addCriterion("creator_id >", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCreatorIdGreaterThanOrEqualTo(String value) {
             addCriterion("creator_id >=", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdLessThan(Integer value) {
+        public Criteria andCreatorIdLessThan(String value) {
             addCriterion("creator_id <", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdLessThanOrEqualTo(Integer value) {
+        public Criteria andCreatorIdLessThanOrEqualTo(String value) {
             addCriterion("creator_id <=", value, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdIn(List<Integer> values) {
+        public Criteria andCreatorIdLike(String value) {
+            addCriterion("creator_id like", value, "creatorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIdNotLike(String value) {
+            addCriterion("creator_id not like", value, "creatorId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCreatorIdIn(List<String> values) {
             addCriterion("creator_id in", values, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdNotIn(List<Integer> values) {
+        public Criteria andCreatorIdNotIn(List<String> values) {
             addCriterion("creator_id not in", values, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdBetween(Integer value1, Integer value2) {
+        public Criteria andCreatorIdBetween(String value1, String value2) {
             addCriterion("creator_id between", value1, value2, "creatorId");
             return (Criteria) this;
         }
 
-        public Criteria andCreatorIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andCreatorIdNotBetween(String value1, String value2) {
             addCriterion("creator_id not between", value1, value2, "creatorId");
             return (Criteria) this;
         }
@@ -485,52 +495,62 @@ public class ArticleExample {
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdEqualTo(Integer value) {
+        public Criteria andModifierIdEqualTo(String value) {
             addCriterion("modifier_id =", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdNotEqualTo(Integer value) {
+        public Criteria andModifierIdNotEqualTo(String value) {
             addCriterion("modifier_id <>", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdGreaterThan(Integer value) {
+        public Criteria andModifierIdGreaterThan(String value) {
             addCriterion("modifier_id >", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andModifierIdGreaterThanOrEqualTo(String value) {
             addCriterion("modifier_id >=", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdLessThan(Integer value) {
+        public Criteria andModifierIdLessThan(String value) {
             addCriterion("modifier_id <", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdLessThanOrEqualTo(Integer value) {
+        public Criteria andModifierIdLessThanOrEqualTo(String value) {
             addCriterion("modifier_id <=", value, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdIn(List<Integer> values) {
+        public Criteria andModifierIdLike(String value) {
+            addCriterion("modifier_id like", value, "modifierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifierIdNotLike(String value) {
+            addCriterion("modifier_id not like", value, "modifierId");
+            return (Criteria) this;
+        }
+
+        public Criteria andModifierIdIn(List<String> values) {
             addCriterion("modifier_id in", values, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdNotIn(List<Integer> values) {
+        public Criteria andModifierIdNotIn(List<String> values) {
             addCriterion("modifier_id not in", values, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdBetween(Integer value1, Integer value2) {
+        public Criteria andModifierIdBetween(String value1, String value2) {
             addCriterion("modifier_id between", value1, value2, "modifierId");
             return (Criteria) this;
         }
 
-        public Criteria andModifierIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andModifierIdNotBetween(String value1, String value2) {
             addCriterion("modifier_id not between", value1, value2, "modifierId");
             return (Criteria) this;
         }

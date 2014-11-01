@@ -304,123 +304,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdIsNull() {
-            addCriterion("role_id is null");
+        public Criteria andEnabledIsNull() {
+            addCriterion("enabled is null");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdIsNotNull() {
-            addCriterion("role_id is not null");
+        public Criteria andEnabledIsNotNull() {
+            addCriterion("enabled is not null");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdEqualTo(Integer value) {
-            addCriterion("role_id =", value, "roleId");
+        public Criteria andEnabledEqualTo(Boolean value) {
+            addCriterion("enabled =", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotEqualTo(Integer value) {
-            addCriterion("role_id <>", value, "roleId");
+        public Criteria andEnabledNotEqualTo(Boolean value) {
+            addCriterion("enabled <>", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdGreaterThan(Integer value) {
-            addCriterion("role_id >", value, "roleId");
+        public Criteria andEnabledGreaterThan(Boolean value) {
+            addCriterion("enabled >", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("role_id >=", value, "roleId");
+        public Criteria andEnabledGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("enabled >=", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLessThan(Integer value) {
-            addCriterion("role_id <", value, "roleId");
+        public Criteria andEnabledLessThan(Boolean value) {
+            addCriterion("enabled <", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("role_id <=", value, "roleId");
+        public Criteria andEnabledLessThanOrEqualTo(Boolean value) {
+            addCriterion("enabled <=", value, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdIn(List<Integer> values) {
-            addCriterion("role_id in", values, "roleId");
+        public Criteria andEnabledIn(List<Boolean> values) {
+            addCriterion("enabled in", values, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotIn(List<Integer> values) {
-            addCriterion("role_id not in", values, "roleId");
+        public Criteria andEnabledNotIn(List<Boolean> values) {
+            addCriterion("enabled not in", values, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdBetween(Integer value1, Integer value2) {
-            addCriterion("role_id between", value1, value2, "roleId");
+        public Criteria andEnabledBetween(Boolean value1, Boolean value2) {
+            addCriterion("enabled between", value1, value2, "enabled");
             return (Criteria) this;
         }
 
-        public Criteria andRoleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("role_id not between", value1, value2, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminIsNull() {
-            addCriterion("is_admin is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminIsNotNull() {
-            addCriterion("is_admin is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminEqualTo(Boolean value) {
-            addCriterion("is_admin =", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminNotEqualTo(Boolean value) {
-            addCriterion("is_admin <>", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminGreaterThan(Boolean value) {
-            addCriterion("is_admin >", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("is_admin >=", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminLessThan(Boolean value) {
-            addCriterion("is_admin <", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminLessThanOrEqualTo(Boolean value) {
-            addCriterion("is_admin <=", value, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminIn(List<Boolean> values) {
-            addCriterion("is_admin in", values, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminNotIn(List<Boolean> values) {
-            addCriterion("is_admin not in", values, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_admin between", value1, value2, "isAdmin");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsAdminNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("is_admin not between", value1, value2, "isAdmin");
+        public Criteria andEnabledNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("enabled not between", value1, value2, "enabled");
             return (Criteria) this;
         }
     }

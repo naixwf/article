@@ -11,15 +11,13 @@ public class Article {
 
     private Integer secretLevel;
 
-    private Integer creatorId;
+    private String creatorId;
 
     private Date createTime;
 
-    private Integer modifierId;
+    private String modifierId;
 
     private Date modifyTime;
-
-    private String content;
 
     public Integer getId() {
         return id;
@@ -53,12 +51,12 @@ public class Article {
         this.secretLevel = secretLevel;
     }
 
-    public Integer getCreatorId() {
+    public String getCreatorId() {
         return creatorId;
     }
 
-    public void setCreatorId(Integer creatorId) {
-        this.creatorId = creatorId;
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId == null ? null : creatorId.trim();
     }
 
     public Date getCreateTime() {
@@ -69,12 +67,12 @@ public class Article {
         this.createTime = createTime;
     }
 
-    public Integer getModifierId() {
+    public String getModifierId() {
         return modifierId;
     }
 
-    public void setModifierId(Integer modifierId) {
-        this.modifierId = modifierId;
+    public void setModifierId(String modifierId) {
+        this.modifierId = modifierId == null ? null : modifierId.trim();
     }
 
     public Date getModifyTime() {
@@ -83,13 +81,5 @@ public class Article {
 
     public void setModifyTime(Date modifyTime) {
         this.modifyTime = modifyTime;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content == null ? null : content.trim();
     }
 }
