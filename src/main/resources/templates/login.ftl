@@ -1,5 +1,6 @@
 <head>
     <title>登陆</title>
+    <link rel="stylesheet" href="/appstatic/signin.css"/>
 </head>
 <body>
 <#if (param.error)??>
@@ -17,16 +18,13 @@
 <div class="container">
 
     <form class="form-signin" role="form">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input type="email" class="form-control" placeholder="Email address" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> Remember me
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <h2 class="form-signin-heading">Article</h2>
+        <input type="text" class="form-control" placeholder="用户名" required autofocus>
+        <input type="password" class="form-control" placeholder="密码" required>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
     </form>
 
-</div> <!-- /container -->
+</div>
+<!-- /container -->
 </body>

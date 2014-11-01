@@ -24,7 +24,7 @@ import java.util.Map;
  *
  * 权限：只有ROLE_ADMIN可以访问
  */
-@Secured({ "ROLE_ADMIN" })
+//@Secured({ "ROLE_ADMIN" }) TODO for debug
 @Controller
 @RequestMapping("/category")
 public class CategoryController {

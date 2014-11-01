@@ -27,7 +27,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/", "/bower_components/**", "/article", "/article/view", "/login").permitAll()
+				.antMatchers("/**",//TODO 测试状态，所有的页面都public
+						"/bower_components/**", "/appstatic/**",//静态资源不做权限校验
+						"/", "/article", "/article/view", "/login"//特定路径不做权限校验
+				)
+				.permitAll()
 				.anyRequest().authenticated();
 		http
 				.formLogin()

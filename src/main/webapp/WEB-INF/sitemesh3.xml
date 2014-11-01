@@ -1,5 +1,8 @@
 <sitemesh>
+    <!--bower 加载的静态组件-->
     <mapping path="/bower_components/*" exclude="true"/>
+    <!-- 本应用自有的静态组件 -->
+    <mapping path="/appstatic/*" exclude="true"/>
 
     <mapping path="/*" decorator="/decorators/common.ftl"/>
 </sitemesh>

@@ -11,7 +11,7 @@
 
     <!-- Bootstrap-->
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <!--<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css"> -->
     <sitemesh:write property='head'/>
 </head>
 <body>

@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/user")
-@Secured({ "ROLE_ADMIN" })
+//@Secured({ "ROLE_ADMIN" })   TODO debug
 public class UserController {
 	@Resource
 	private UserService userService;
