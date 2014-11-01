@@ -1,6 +1,7 @@
 package com.naixwf.article.web;
 
 import com.naixwf.article.domain.Article;
+import com.naixwf.article.domain.ArticleWithBLOBs;
 import com.naixwf.article.service.ArticleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,7 +65,7 @@ public class ArticleController {
 
 //	@Secured({ "ROLE_ADMIN" })    TODO for debug
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String postAdd(Article article) {
+	public String postAdd(ArticleWithBLOBs article) {
 		//TODO validate param
 		articleService.add(article);
 		return "redirect:view?articleId=" + article.getId();
@@ -83,7 +84,7 @@ public class ArticleController {
 
 //	@Secured({ "ROLE_ADMIN" })    TODO for debug
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public String postEdit(Article article) {
+	public String postEdit(ArticleWithBLOBs article) {
 		articleService.modify(article);
 		return "redirect:view?articleId=" + article.getId();
 	}

@@ -36,11 +36,4 @@ public class UserServiceImpl implements UserService {
 		return list;
 	}
 
-	@Override
-	public void modifyRole(int userId, int roleId) {
-		User user = new User();
-		user.setId(userId);
-		user.setRoleId(roleId);
-		userMapper.updateByPrimaryKeySelective(user);
-	}
 }

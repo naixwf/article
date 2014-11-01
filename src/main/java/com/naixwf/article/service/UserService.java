@@ -15,11 +15,4 @@ public interface UserService {
 	 * @return
 	 */
 	List<User> getAll();
-
-	/**
-	 * 修改指定用户的角色
-	 * @param userId
-	 * @param roleId
-	 */
-	void modifyRole(int userId, int roleId);
 }

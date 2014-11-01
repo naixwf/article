@@ -48,7 +48,7 @@ public class UserController {
 	public
 	@ResponseBody
 	String postEdit(Integer userId, Integer roleId) {
-		userService.modifyRole(userId, roleId);
+		//TODO stub
 		return "postEdit user role completed: userId=" + userId;
 	}
 }
