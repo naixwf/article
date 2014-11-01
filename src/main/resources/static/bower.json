@@ -1,0 +1,12 @@
+{
+    "name": "article",
+    "version": "0.0.0",
+    "authors": [
+        "naixwf <naixwf@gmail.com>"
+    ],
+    "private": true,
+    "dependencies": {
+        "jquery": "1.9.0",
+        "bootstrap": "3.1.1"
+    }
+}
