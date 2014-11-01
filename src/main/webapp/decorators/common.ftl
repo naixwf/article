@@ -1,23 +1,23 @@
-<!doctype html>
-<html>
-<head>
-    <title>SiteMesh example: <sitemesh:write property='title'/></title>
-    <style type='text/css'>
-        /* Some CSS */
-        body { font-family: arial, sans-serif; background-color: #ffffcc; }
-        h1, h2, h3, h4 { text-align: center; background-color: #ccffcc;
-            border-top: 1px solid #66ff66; }
-        .mainBody { padding: 10px; border: 1px solid #555555; }
-        .disclaimer { text-align: center; border-top: 1px solid #cccccc;
-            margin-top: 40px; color: #666666; font-size: smaller; }
-    </style>
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" ng-app="Sys" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html lang="en" ng-app="Sys" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html lang="en" ng-app="Sys" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--><html lang="en" ng-app="Sys" class="no-js"> <!--<![endif]-->
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Article
+        <sitemesh:write property='title'/>
+    </title>
+
+    <!-- Bootstrap-->
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <sitemesh:write property='head'/>
 </head>
 <body>
-<div id="doc">
-    <div id="content">
-        <sitemesh:write property='body'/>
-    </div>
-</div>
+<sitemesh:write property='body'/>
+<!--js-->
+<script type="text/javascript" src="/bower_components/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
