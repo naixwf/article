@@ -7,7 +7,6 @@ import com.naixwf.article.persistence.ArticleMapper;
 import com.naixwf.article.service.ArticleService;
 import org.markdown4j.Markdown4jProcessor;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -40,13 +39,13 @@ public class ArticleServiceImpl implements ArticleService {
 
 		article.setId(null);
 
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+		String username = (String) SecurityContextHolder.getContext()
 				.getAuthentication()
 				.getPrincipal();
 		Date now = new Date();
 
-		article.setCreatorId(userDetails.getUsername());
-		article.setModifierId(userDetails.getUsername());
+		article.setCreatorId(username);
+		article.setModifierId(username);
 		article.setCreateTime(now);
 		article.setModifyTime(now);
 
@@ -67,7 +66,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void modify(ArticleWithBLOBs article) {
-		UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext()
+		String username = (String) SecurityContextHolder.getContext()
 				.getAuthentication()
 				.getPrincipal();
 		Date now = new Date();
@@ -75,7 +74,7 @@ public class ArticleServiceImpl implements ArticleService {
 		article.setCreatorId(null);
 		article.setCreateTime(null);
 
-		article.setModifierId(userDetails.getUsername());
+		article.setModifierId(username);
 		article.setModifyTime(now);
 
 		try {

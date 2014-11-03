@@ -5,12 +5,14 @@
     <title>查看文档</title>
 </head>
 <body>
-查看文档
-<form method="POST">
-    title:${article.title}<br/>
-    content:${article.content}<br/>
+<div class="container">
+    <h1>${article.title}</h1>
     categoryId:#{article.categoryId}<br/>
     secretLevel:#{article.secretLevel}<br/>
-</form>
+    <hr/>
+${article.contentHtml}
+    <hr/>
+
+</div>
 </body>
 </html>

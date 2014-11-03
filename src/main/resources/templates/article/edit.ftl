@@ -1,20 +1,55 @@
-<!DOCTYPE html>
-<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>修改文档</title>
 </head>
 <body>
-修改文档
-<form method="POST">
-    <input type="hidden" name="id" value="#{article.id}"/>
-    title:<input name="title" value="${article.title}"/><br/>
-    content:<input name="content" value="${article.content}"/><br/>
-    categoryId:<input name="categoryId" value="#{article.categoryId}"/><br/>
-    secretLevel:<input name="secretLevel" value="#{article.secretLevel}"/><br/>
-    <input type="submit" value="submit"/>
-</form>
+<div class="container">
+    <form role="form" class="form-horizontal" method="POST">
+        <input type="hidden" name="id" value="#{article.id}"/>
 
-<a href="#">删除</a>
+        <div class="form-group">
+            <label for="title" class="col-sm-2 control-label">标题</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="title" placeholder="标题" name="title"
+                       value="${article.title}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category" class="col-sm-2 control-label">类别</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="category" name="categoryId" value="#{article.categoryId}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="level" class="col-sm-2 control-label">安全级别</label>
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="level" name="secretLevel" value="#{article.secretLevel}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content" class="col-sm-2 control-label">正文</label>
+
+            <div class="col-sm-10">
+                <textarea id="content" class="form-control" rows="16" name="content">${article.content}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="content" class="col-sm-2 control-label"></label>
+
+            <div class="col-sm-10">
+                <input type="submit" class="btn btn-primary" value="提交修改"/>
+                <a type="submit" class="btn btn-danger" href="#">删除本文</a>
+            </div>
+        </div>
+    </form>
+    <form></form>
+</div>
+
 </body>
-</html>
+
