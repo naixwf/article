@@ -5,4 +5,6 @@
     <mapping path="/appstatic/*" exclude="true"/>
 
     <mapping path="/*" decorator="/decorators/common.ftl"/>
+
+    <mapping path="/login" decorator="/decorators/nonav.ftl"/>
 </sitemesh>

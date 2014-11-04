@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="/appstatic/signin.css"/>
 </head>
 <body>
-${(param.error)?if_exists}
 <#if (param.error)??>
 <div>
     Invalid username and password.
@@ -18,10 +17,11 @@ ${(param.error)?if_exists}
 
 <div class="container">
 
-    <form class="form-signin" role="form">
+
+    <form class="form-signin" role="form" method="POST">
         <h2 class="form-signin-heading">Article</h2>
-        <input type="text" class="form-control" placeholder="用户名" required autofocus>
-        <input type="password" class="form-control" placeholder="密码" required>
+        <input type="text" name="username" class="form-control" placeholder="用户名" required autofocus>
+        <input type="password" name="password" class="form-control" placeholder="密码" required>
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
     </form>

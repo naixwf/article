@@ -10,9 +10,6 @@
     </div>
     <hr/>
 </@security.authorize>
-
-${principal}
-
     <div class="row">
         <div class="col-sm-8">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -76,7 +73,9 @@ ${principal}
                 <p>
                     <code>作者:</code>${item.modifierId}
                     <code>修改时间:</code>${item.modifyTime?string("yyyy-MM-dd HH:mm:ss")}
-                    <code><a href="/article/edit?articleId=${item.id}" target="_blank">edit</a></code>
+                    <@security.authorize ifAnyGranted="ROLE_ADMIN">
+                        <code><a href="/article/edit?articleId=${item.id}" target="_blank">edit</a></code>
+                    </@security.authorize>
                 </p>
             </div>
         </#list>

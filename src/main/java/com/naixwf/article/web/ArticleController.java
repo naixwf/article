@@ -45,9 +45,6 @@ public class ArticleController {
 	@RequestMapping
 	public String list(Map<String, Object> model) {
 
-		String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.put("principal", principal);
-
 		List<Article> list = articleService.getAll();
 		model.put("articleList", list);
 
