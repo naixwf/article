@@ -11,6 +11,8 @@
     <hr/>
 </@security.authorize>
 
+${principal}
+
     <div class="row">
         <div class="col-sm-8">
             <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

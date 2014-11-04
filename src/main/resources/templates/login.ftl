@@ -3,6 +3,7 @@
     <link rel="stylesheet" href="/appstatic/signin.css"/>
 </head>
 <body>
+${(param.error)?if_exists}
 <#if (param.error)??>
 <div>
     Invalid username and password.

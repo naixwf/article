@@ -24,7 +24,7 @@ import java.util.Map;
  *
  * 权限：只有ROLE_ADMIN可以访问
  */
-//@Secured({ "ROLE_ADMIN" }) TODO for debug
+@Secured({ "ROLE_ADMIN" })
 @Controller
 @RequestMapping("/category")
 public class CategoryController {
@@ -47,8 +47,7 @@ public class CategoryController {
 	 * 新增一个分类
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String
-	postAdd(Category category) {
+	public String postAdd(Category category) {
 		//TODO 过滤恶意脚本  防CSRF
 		categoryService.add(category);
 		return "redirect:/category";

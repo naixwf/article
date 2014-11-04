@@ -84,9 +84,6 @@ public class ArticleApplication {
 
 		FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
 		filterRegBean.setFilter(sitemeshFilter);
-//		List<String> urlPatterns = new ArrayList<String>();
-//		urlPatterns.add("/*");
-//		filterRegBean.setUrlPatterns(urlPatterns);
 
 		return filterRegBean;
 	}

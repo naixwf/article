@@ -27,16 +27,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 				.authorizeRequests()
-				.antMatchers("/**",//TODO 测试状态，所有的页面都public
+				.antMatchers(
 						"/bower_components/**", "/appstatic/**",//静态资源不做权限校验
-						"/", "/article", "/article/view", "/login"//特定路径不做权限校验
+						"/", "/article", "/article/view",//特定路径不做权限校验
+						"/favicon.ico"
 				)
 				.permitAll()
 				.anyRequest().authenticated();
+//				hasAnyAuthority("ROLE_ANONYMOUS","ROLE_ADMIN","ROLE_JUNIOR","ROLE_SENIOR");//TODO 可维护性
 		http
 				.formLogin()
-				.loginPage("/login")
-				.permitAll()
+				.loginPage("/login").defaultSuccessUrl("/article").permitAll()
 				.and()
 				.logout()
 				.permitAll();
