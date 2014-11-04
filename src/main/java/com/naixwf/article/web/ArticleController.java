@@ -1,8 +1,10 @@
 package com.naixwf.article.web;
 
+import com.naixwf.article.SecretLevel;
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleWithBLOBs;
 import com.naixwf.article.service.ArticleService;
+import com.naixwf.article.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -31,6 +33,8 @@ public class ArticleController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 	@Resource
 	private ArticleService articleService;
+	@Resource
+	private CategoryService categoryService;
 
 	/**
 	 * 文章列表
@@ -49,6 +53,9 @@ public class ArticleController {
 	 */
 	@RequestMapping("/view")
 	public String view(Integer articleId, Map<String, Object> model) {
+		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
+		model.put("categoryMap", categoryService.getCategoryMap());
+
 		Article article = articleService.getById(articleId);
 		model.put("article", article);
 		return "article/view";
@@ -57,13 +64,15 @@ public class ArticleController {
 	/**
 	 * 新增一篇文章
 	 */
-//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Map<String, Object> model) {
+		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
+		model.put("categoryMap", categoryService.getCategoryMap());
 		return "article/add";
 	}
 
-//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(ArticleWithBLOBs article) {
 		//TODO validate param
@@ -74,15 +83,18 @@ public class ArticleController {
 	/**
 	 * 修改一篇文章
 	 */
-//	@Secured({ "ROLE_ADMIN" })   TODO for debug
+	//	@Secured({ "ROLE_ADMIN" })   TODO for debug
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Integer articleId, Map<String, Object> model) {
+		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
+		model.put("categoryMap", categoryService.getCategoryMap());
+
 		Article article = articleService.getById(articleId);
 		model.put("article", article);
 		return "article/edit";
 	}
 
-//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(ArticleWithBLOBs article) {
 		articleService.modify(article);
@@ -92,7 +104,7 @@ public class ArticleController {
 	/**
 	 * 删除一篇文档
 	 */
-//	@Secured({ "ROLE_ADMIN" })       TODO for debug
+	//	@Secured({ "ROLE_ADMIN" })       TODO for debug
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer articleId) {
 		articleService.delete(articleId);

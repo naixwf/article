@@ -47,34 +47,30 @@ public class CategoryController {
 	 * 新增一个分类
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public
-	@ResponseBody
-	String
+	public String
 	postAdd(Category category) {
+		//TODO 过滤恶意脚本  防CSRF
 		categoryService.add(category);
-		return "category postAdd completed: categoryId=" + category.getId();
+		return "redirect:/category";
 	}
 
 	/**
 	 * 修改一个分类
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public
-	@ResponseBody
-	String postEdit(Category category) {
+	public String postEdit(Category category) {
 		categoryService.modify(category);
-		return "category postAdd completed: categoryId=" + category.getId();
+		return "redirect:/category";
 	}
 
 	/**
 	 * 删除一个分类
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public
-	@ResponseBody
-	String postDelete(Integer categoryId) {
+	public String postDelete(Integer categoryId) {
+		//TODO 先查一下有没有article在用这个类别，如果有，则不允许删除
 		categoryService.delete(categoryId);
-		return "category postDelete completed: categoryId=" + categoryId;
+		return "redirect:/category";
 	}
 
 }

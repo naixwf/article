@@ -1,6 +1,9 @@
 package com.naixwf.article.web;
 
+import com.naixwf.article.AuthorityDefine;
+import com.naixwf.article.domain.Authority;
 import com.naixwf.article.domain.User;
+import com.naixwf.article.service.AuthorityService;
 import com.naixwf.article.service.UserService;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
@@ -28,6 +31,8 @@ import java.util.Map;
 public class UserController {
 	@Resource
 	private UserService userService;
+	@Resource
+	private AuthorityService authorityService;
 
 	/**
 	 * 用户-角色列表
@@ -36,8 +41,12 @@ public class UserController {
 	 */
 	@RequestMapping
 	public String list(Map<String, Object> model) {
-		List<User> list = userService.getAll();
-		model.put("userList", list);
+		Map<String, String> authorityDefineMap = AuthorityDefine.getMap();
+		model.put("authorityDefineMap", authorityDefineMap);
+
+		List<Authority> list = authorityService.getAll();
+		model.put("authorityList", list);
+
 		return "user/list";
 	}
 
@@ -45,10 +54,8 @@ public class UserController {
 	 * 修改某人的角色
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
-	public
-	@ResponseBody
-	String postEdit(Integer userId, Integer roleId) {
-		//TODO stub
-		return "postEdit user role completed: userId=" + userId;
+	public String postEdit(String username, String authority) {
+		authorityService.modify(username, authority);
+		return "redirect:/user";
 	}
 }

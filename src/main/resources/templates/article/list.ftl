@@ -1,11 +1,15 @@
+<#assign security=JspTaglibs["/WEB-INF/tlds/security.tld"] />
+
 <title>文档列表</title>
 <body>
 <div class="container">
     <!-- TODO 只有管理员显示 -->
+<@security.authorize ifAnyGranted="ROLE_ADMIN">
     <div>
         <a href="/article/add" class="btn btn-primary">添加文章</a>
     </div>
     <hr/>
+</@security.authorize>
 
     <div class="row">
         <div class="col-sm-8">

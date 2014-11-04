@@ -1,5 +1,5 @@
-<head lang="en">
-    <meta charset="UTF-8">
+<#import "../map2select_macro.ftl" as map/>
+<head>
     <title>修改文档</title>
 </head>
 <body>
@@ -10,24 +10,25 @@
         <div class="form-group">
             <label for="title" class="col-sm-2 control-label">标题</label>
 
-            <div class="col-sm-10">
+            <div class="col-sm-4">
                 <input type="text" class="form-control" id="title" placeholder="标题" name="title"
                        value="${article.title}"/>
             </div>
         </div>
+
         <div class="form-group">
             <label for="category" class="col-sm-2 control-label">类别</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="category" name="categoryId" value="#{article.categoryId}"/>
+            <div class="col-sm-2">
+            <@map.select blank=false textId="categoryId" class="form-control" source=categoryMap selected="#{article.categoryId}"/>
             </div>
         </div>
 
         <div class="form-group">
             <label for="level" class="col-sm-2 control-label">安全级别</label>
 
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="level" name="secretLevel" value="#{article.secretLevel}"/>
+            <div class="col-sm-2">
+            <@map.select blank=false textId="secretLevel" class="form-control" source=secretLevelMap selected="#{article.secretLevel}"/>
             </div>
         </div>
 

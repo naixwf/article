@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
+<#import "../map2select_macro.ftl" as map/>
 <head lang="en">
-    <meta charset="UTF-8">
     <title>查看文档</title>
 </head>
 <body>
 <div class="container">
     <h1>${article.title}</h1>
-    categoryId:#{article.categoryId}<br/>
-    secretLevel:#{article.secretLevel}<br/>
+    <code>分类:</code><@map.text  source=categoryMap value="#{article.categoryId}"/><br/>
+    <code>安全级别:</code><@map.text  source=secretLevelMap value="#{article.secretLevel}"/><br/>
     <hr/>
 ${article.contentHtml}
     <hr/>

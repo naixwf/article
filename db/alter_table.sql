@@ -55,7 +55,7 @@ create table users (
 
 DROP TABLE IF EXISTS `authorities`;
 create table authorities (
-  username  varchar(256) not null,
+  username  varchar(256) not null primary key,
   authority varchar(256) not null
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='spring security authorities';
 

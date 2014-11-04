@@ -6,7 +6,9 @@ import com.naixwf.article.domain.ArticleWithBLOBs;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface ArticleMapper {
     int countByExample(ArticleExample example);
 

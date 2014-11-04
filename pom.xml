@@ -33,7 +33,17 @@
         <markdown4j.version>2.2-cj-1.0</markdown4j.version>
     </properties>
     <dependencies>
-
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${spring-security.version}</version>
+        </dependency>
+        <!-- markdown -->
         <dependency>
             <groupId>org.commonjava.googlecode.markdown4j</groupId>
             <artifactId>markdown4j</artifactId>

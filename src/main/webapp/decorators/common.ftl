@@ -36,9 +36,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/article">文章检索</a></li>
-                <li><a href="#about">分类管理</a></li>
-                <li><a href="#contact">权限管理</a></li>
+                <li class="active"><a href="/article">文档检索</a></li>
+                <li><a href="/category">分类管理</a></li>
+                <li><a href="/user">权限管理</a></li>
                 <!-- <li class="dropdown">
                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">

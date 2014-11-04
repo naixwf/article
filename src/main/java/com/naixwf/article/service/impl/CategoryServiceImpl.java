@@ -9,7 +9,9 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.Resource;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangfei on 14-10-30.
@@ -44,5 +46,15 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void delete(int categoryId) {
 		categoryMapper.deleteByPrimaryKey(categoryId);
+	}
+
+	@Override
+	public Map<String, String> getCategoryMap() {
+		List<Category> list = getAll();
+		Map<String, String> map = new LinkedHashMap<String, String>();
+		for (Category c : list) {
+			map.put(c.getId().toString(), c.getCategroyName());
+		}
+		return map;
 	}
 }

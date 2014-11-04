@@ -3,6 +3,7 @@ package com.naixwf.article.service;
 import com.naixwf.article.domain.Category;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wangfei on 14-10-30.
@@ -32,4 +33,11 @@ public interface CategoryService {
 	 * @param categoryId
 	 */
 	void delete(int categoryId);
+
+	/**
+	 * 获取所有类别 key->value
+	 * @return
+	 */
+	Map<String, String> getCategoryMap();
+
 }
