@@ -22,8 +22,8 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active" style="height: 250px;background: #BBBBBB;">
-                        <img src="" alt="">
+                    <div class="item active" style="height: 300px;background: #BBBBBB;">
+                        <img src="/appstatic/img/3.jpg" width="750" height="300" alt="">
 
                         <div class="carousel-caption">
                             <h3>Article</h3>
@@ -31,8 +31,8 @@
                             <p>一个基于<a href="http://wowubuntu.com/markdown/index.html">Markdown</a>的文档管理工具</p>
                         </div>
                     </div>
-                    <div class="item" style="height: 250px;background: #BBBBBB;">
-                        <img src=""
+                    <div class="item" style="height: 300px;background: #BBBBBB;">
+                        <img src="/appstatic/img/2.jpg" width="750" height="300" alt="">
                              alt="">
 
                         <div class="carousel-caption">
@@ -41,8 +41,8 @@
                             <p>可对文档细分类别，方便管理</p>
                         </div>
                     </div>
-                    <div class="item" style="height: 250px;background: #BBBBBB;">
-                        <img src=""
+                    <div class="item" style="height: 300px;background: #BBBBBB;">
+                        <img src="/appstatic/img/4.jpg"
                              alt="">
 
                         <div class="carousel-caption">
