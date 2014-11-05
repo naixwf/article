@@ -4,7 +4,7 @@
 <body>
 
 <div class="container">
-    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">新增</button>
+    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#addModal">新增文档类别</button>
     <hr/>
 <h3>现有类别</h3>
 <#list categoryList as item>
@@ -52,7 +52,7 @@
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span
                             aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title" id="addModalLabel">编辑文档类别</h4>
+                    <h4 class="modal-title" id="addModalLabel">新增文档类别</h4>
                 </div>
                 <form action="/category/add" method="POST">
                     <div class="modal-body">

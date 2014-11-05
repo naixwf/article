@@ -17,6 +17,7 @@
 package com.naixwf.article;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.naixwf.article.web.FreemarkerFilter;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -28,20 +29,21 @@ import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
+import javax.annotation.Resource;
+import javax.servlet.DispatcherType;
 import javax.servlet.Filter;
 import javax.sql.DataSource;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 @Configuration
 @EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)//TODO why exclude
 @ComponentScan
 @MapperScan("com.naixwf.article.persistence")
 public class ArticleApplication {
-
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(ArticleApplication.class, args);
 	}
@@ -77,15 +79,4 @@ public class ArticleApplication {
 
 		return ds;
 	}
-
-	@Bean
-	public FilterRegistrationBean sitemeshFilter() {
-		Filter sitemeshFilter = new ConfigurableSiteMeshFilter();
-
-		FilterRegistrationBean filterRegBean = new FilterRegistrationBean();
-		filterRegBean.setFilter(sitemeshFilter);
-
-		return filterRegBean;
-	}
-
 }

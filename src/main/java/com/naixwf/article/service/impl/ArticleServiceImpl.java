@@ -1,11 +1,15 @@
 package com.naixwf.article.service.impl;
 
+import com.naixwf.article.define.AuthorityDefine;
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleExample;
 import com.naixwf.article.domain.ArticleWithBLOBs;
+import com.naixwf.article.domain.User;
 import com.naixwf.article.persistence.ArticleMapper;
 import com.naixwf.article.service.ArticleService;
 import org.markdown4j.Markdown4jProcessor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -21,6 +25,7 @@ import java.util.List;
  */
 @Service
 public class ArticleServiceImpl implements ArticleService {
+	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleServiceImpl.class);
 	@Resource
 	private ArticleMapper articleMapper;
 
@@ -39,13 +44,14 @@ public class ArticleServiceImpl implements ArticleService {
 
 		article.setId(null);
 
-		String username = (String) SecurityContextHolder.getContext()
+		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+				.getContext()
 				.getAuthentication()
 				.getPrincipal();
 		Date now = new Date();
 
-		article.setCreatorId(username);
-		article.setModifierId(username);
+		article.setCreatorId(user.getUsername());
+		article.setModifierId(user.getUsername());
 		article.setCreateTime(now);
 		article.setModifyTime(now);
 
@@ -61,12 +67,21 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public Article getById(int articleId) {
-		return articleMapper.selectByPrimaryKey(articleId);
+		int currentUserSecretLevel = AuthorityDefine.getCurrentUserSecretLevel();
+		Article a = articleMapper.selectByPrimaryKey(articleId);
+		if (a.getSecretLevel() <= currentUserSecretLevel) {
+			return a;
+		} else {
+			LOGGER.debug("该用户secretLevel={},对id={}:secretLevel={}的文档没有权限", currentUserSecretLevel, articleId,
+					a.getSecretLevel());
+			return null;
+		}
 	}
 
 	@Override
 	public void modify(ArticleWithBLOBs article) {
-		String username = (String) SecurityContextHolder.getContext()
+		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+				.getContext()
 				.getAuthentication()
 				.getPrincipal();
 		Date now = new Date();
@@ -74,7 +89,7 @@ public class ArticleServiceImpl implements ArticleService {
 		article.setCreatorId(null);
 		article.setCreateTime(null);
 
-		article.setModifierId(username);
+		article.setModifierId(user.getUsername());
 		article.setModifyTime(now);
 
 		try {
@@ -90,5 +105,18 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public void delete(int articleId) {
 		articleMapper.deleteByPrimaryKey(articleId);
+	}
+
+	@Override
+	public List<Article> getListLowerThanSecretLevel(int secretLevel) {
+		ArticleExample e = new ArticleExample();
+		e.createCriteria().andSecretLevelLessThanOrEqualTo(secretLevel);
+
+		List<Article> list = articleMapper.selectByExample(e);
+		if (CollectionUtils.isEmpty(list)) {
+			list = Collections.EMPTY_LIST;
+		}
+
+		return list;
 	}
 }

@@ -36,21 +36,18 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/article">文档检索</a></li>
-                <li><a href="/category">分类管理</a></li>
-                <li><a href="/user">权限管理</a></li>
-                <!-- <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                <li class="active"><a href="/article">首页</a></li>
+                 <li class="dropdown">
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员权限<span class="caret"></span></a>
                      <ul class="dropdown-menu" role="menu">
-                         <li><a href="#">Action</a></li>
-                         <li><a href="#">Another action</a></li>
-                         <li><a href="#">Something else here</a></li>
-                         <li class="divider"></li>
-                         <li class="dropdown-header">Nav header</li>
-                         <li><a href="#">Separated link</a></li>
-                         <li><a href="#">One more separated link</a></li>
+                         <li><a href="/category">分类管理</a></li>
+                         <li><a href="/user">权限管理</a></li>
                      </ul>
-                 </li>   -->
+                 </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a  href="/logout">登出</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->

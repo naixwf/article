@@ -1,14 +1,15 @@
 package com.naixwf.article.web;
 
-import com.naixwf.article.SecretLevel;
+import com.naixwf.article.define.AuthorityDefine;
+import com.naixwf.article.define.SecretLevel;
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleWithBLOBs;
+import com.naixwf.article.exception.BizException;
 import com.naixwf.article.service.ArticleService;
 import com.naixwf.article.service.CategoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,7 @@ import java.util.Map;
  *
  * 题目(1) 实现文档管理功能(增删改)
  * 题目(2) 前台页面文档的查看
- * TODO
+ *
  * 文档列表
  * 新增文档
  * 修改文档
@@ -39,27 +40,39 @@ public class ArticleController {
 
 	/**
 	 * 文章列表
+	 * AUTH 有数据权限控制
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping
 	public String list(Map<String, Object> model) {
+		int currentUserSecretLevel = AuthorityDefine.getCurrentUserSecretLevel();
 
-		List<Article> list = articleService.getAll();
+		List<Article> list = articleService.getListLowerThanSecretLevel(currentUserSecretLevel);
+		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
 		model.put("articleList", list);
+
+		//TODO 分页
 
 		return "article/list";
 	}
 
 	/**
 	 * 查看一篇文章
+	 * AUTH 有数据权限控制
 	 */
 	@RequestMapping("/view")
 	public String view(Integer articleId, Map<String, Object> model) {
+
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
 		model.put("categoryMap", categoryService.getCategoryMap());
 
 		Article article = articleService.getById(articleId);
+
+		if (article == null) {
+			throw new BizException("没有找到此文章,id=" + articleId);
+		}
+
 		model.put("article", article);
 		return "article/view";
 	}
@@ -67,7 +80,7 @@ public class ArticleController {
 	/**
 	 * 新增一篇文章
 	 */
-	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String add(Map<String, Object> model) {
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
@@ -75,7 +88,7 @@ public class ArticleController {
 		return "article/add";
 	}
 
-	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(ArticleWithBLOBs article) {
 		//TODO validate param
@@ -86,7 +99,7 @@ public class ArticleController {
 	/**
 	 * 修改一篇文章
 	 */
-	//	@Secured({ "ROLE_ADMIN" })   TODO for debug
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Integer articleId, Map<String, Object> model) {
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
@@ -97,7 +110,7 @@ public class ArticleController {
 		return "article/edit";
 	}
 
-	//	@Secured({ "ROLE_ADMIN" })    TODO for debug
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(ArticleWithBLOBs article) {
 		articleService.modify(article);
@@ -107,11 +120,11 @@ public class ArticleController {
 	/**
 	 * 删除一篇文档
 	 */
-	//	@Secured({ "ROLE_ADMIN" })       TODO for debug
+	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer articleId) {
 		articleService.delete(articleId);
-		return "redirect:/article";//TODO contextPath
+		return "redirect:/article";
 	}
 
 }

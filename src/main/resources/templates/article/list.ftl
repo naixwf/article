@@ -1,12 +1,12 @@
 <#assign security=JspTaglibs["/WEB-INF/tlds/security.tld"] />
-
+<#import "../map2select_macro.ftl" as map/>
 <title>文档列表</title>
 <body>
 <div class="container">
     <!-- TODO 只有管理员显示 -->
 <@security.authorize ifAnyGranted="ROLE_ADMIN">
     <div>
-        <a href="/article/add" class="btn btn-primary">添加文章</a>
+        <a href="/article/add" class="btn btn-primary">添加文档</a>
     </div>
     <hr/>
 </@security.authorize>
@@ -22,34 +22,31 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner" role="listbox">
-                    <div class="item active">
-                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjxnPjx0ZXh0IHg9IjM0MC45OTIxODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM3Nzc7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj45MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4="
-                             alt="900x500">
+                    <div class="item active" style="height: 250px;background: #BBBBBB;">
+                        <img src="" alt="">
 
                         <div class="carousel-caption">
-                            <h3>First slide label</h3>
-
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3>Article</h3>
+                            <p>一个基于markdown的文档管理工具</p>
                         </div>
                     </div>
-                    <div class="item">
-                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzc3NyIvPjxnPjx0ZXh0IHg9IjM0MC45OTIxODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM3Nzc7Zm9udC13ZWlnaHQ6Ym9sZDtmb250LWZhbWlseTpBcmlhbCwgSGVsdmV0aWNhLCBPcGVuIFNhbnMsIHNhbnMtc2VyaWYsIG1vbm9zcGFjZTtmb250LXNpemU6NDJwdDtkb21pbmFudC1iYXNlbGluZTpjZW50cmFsIj45MDB4NTAwPC90ZXh0PjwvZz48L3N2Zz4="
-                             alt="...">
+                    <div class="item" style="height: 250px;background: #BBBBBB;">
+                        <img src=""
+                             alt="">
 
                         <div class="carousel-caption">
-                            <h3>Second slide label</h3>
-
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <h3>文档分类</h3>
+                            <p>可对文档细分类别，方便管理</p>
                         </div>
                     </div>
-                    <div class="item">
-                        <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgdmlld0JveD0iMCAwIDkwMCA1MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxkZWZzLz48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjxnPjx0ZXh0IHg9IjM0MC45OTIxODc1IiB5PSIyNTAiIHN0eWxlPSJmaWxsOiM1NTU1O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjQycHQ7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+OTAweDUwMDwvdGV4dD48L2c+PC9zdmc+"
-                             alt="...">
+                    <div class="item"  style="height: 250px;background: #BBBBBB;">
+                        <img src=""
+                             alt="">
 
                         <div class="carousel-caption">
-                            <h3>Third slide label</h3>
-
-                            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                            <h3>查看权限</h3>
+                            <p>文档分为公开、内部资料、保密等安全级别</p>
+                            <p>高级用户可以查看保密级别高的文档</p>
                         </div>
                     </div>
                 </div>
@@ -71,8 +68,9 @@
                 <h4><a href="/article/view?articleId=${item.id}" target="_blank">${item.title}</a></h4>
 
                 <p>
-                    <code>作者:</code>${item.modifierId}
+                    <code>最后修改人:</code>${item.modifierId}
                     <code>修改时间:</code>${item.modifyTime?string("yyyy-MM-dd HH:mm:ss")}
+                    <code>安全级别:</code><@map.text  source=secretLevelMap value="#{item.secretLevel}"/>
                     <@security.authorize ifAnyGranted="ROLE_ADMIN">
                         <code><a href="/article/edit?articleId=${item.id}" target="_blank">edit</a></code>
                     </@security.authorize>

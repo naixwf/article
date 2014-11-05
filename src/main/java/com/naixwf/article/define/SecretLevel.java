@@ -1,4 +1,4 @@
-package com.naixwf.article;
+package com.naixwf.article.define;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * Created by wangfei on 14-10-30.
  * 文章保密级别，匹配用户的浏览权限以决定文章是否可见
- * TODO
+ * 数据库中的article.secret_level的值必须在这个类枚举的范围内
  */
 public class SecretLevel {
 	//公开

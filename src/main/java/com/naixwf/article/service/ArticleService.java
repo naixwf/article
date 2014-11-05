@@ -39,6 +39,7 @@ public interface ArticleService {
 
 	/**
 	 * 根据id获取文档
+	 * AUTH 有数据权限控制，需要当前用户的安全级别>=本文档的安全级别
 	 * @param articleId
 	 * @return
 	 */
@@ -55,4 +56,11 @@ public interface ArticleService {
 	 * @param articleId
 	 */
 	void delete(int articleId);
+
+	/**
+	 * 获取【安全级别<=secretLevel】的文档列表
+	 * @param secretLevel 用户安全级别
+	 * @return 返回article.secretLevel<=secretLevel的文档列表
+	 */
+	List<Article> getListLowerThanSecretLevel(int secretLevel);
 }
