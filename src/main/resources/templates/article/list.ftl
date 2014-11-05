@@ -67,6 +67,23 @@
             </div>
             <!-- carousel -->
 
+            <hr/>
+            <!-- 按分类查看 -->
+            <div class="btn-group" data-toggle="buttons" id="categoryBtn">
+                <label class="btn btn-default <#if !(categoryId??)>active</#if>">
+                    <input type="radio" name="options" autocomplete="off"
+                           <#if !(categoryId??)>checked</#if> >&nbsp;&nbsp;&nbsp;全部&nbsp;&nbsp;&nbsp;
+                </label>
+            <#list categoryList as item>
+                <label class="btn btn-primary <#if (categoryId??)&&(categoryId=item.id)>active</#if>"
+                       id="categoryId=#{item.id}">
+                    <input type="radio" name="categoryId" autocomplete="off"
+                           <#if (categoryId??)&&(categoryId=item.id)>checked</#if>>${item.categroyName}
+                </label>
+            </#list>
+            </div>
+
+
         <#list articleList as item>
             <div class="bs-callout bs-callout-info">
                 <h4><a href="/article/view?articleId=${item.id}" target="_blank">${item.title}</a></h4>
@@ -102,7 +119,13 @@
 </div>
 <script type="text/javascript">
     $(function () {
+        //幻灯片
         $('.carousel').carousel();
+
+        //分类按钮
+        $('#categoryBtn').on('click', function (e) {
+            window.location.href = '/article?' + e.target.id;
+        })
     })
 </script>
 </body>

@@ -59,10 +59,12 @@ public interface ArticleService {
 
 	/**
 	 * 获取【安全级别<=secretLevel】的文档列表
+	 *
+	 * @param categoryId 如果这个参数为null，返回所有类别文档，否则只返回指定类别文档
 	 * @param secretLevel 用户安全级别
 	 * @return 返回article.secretLevel<=secretLevel的文档列表
 	 */
-	List<Article> getListLowerThanSecretLevel(int secretLevel);
+	List<Article> getListByCategoryIdAndLowerThanSecretLevel(Integer categoryId, int secretLevel);
 
 	/**
 	 * 查找某一类文档

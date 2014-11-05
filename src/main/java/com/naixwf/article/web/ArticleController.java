@@ -4,6 +4,7 @@ import com.naixwf.article.define.AuthorityDefine;
 import com.naixwf.article.define.SecretLevel;
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleWithBLOBs;
+import com.naixwf.article.domain.Category;
 import com.naixwf.article.exception.BizException;
 import com.naixwf.article.service.ArticleService;
 import com.naixwf.article.service.CategoryService;
@@ -46,12 +47,18 @@ public class ArticleController extends BaseController {
 	 * @return
 	 */
 	@RequestMapping
-	public String list(Map<String, Object> model) {
+	public String list(Integer categoryId, Map<String, Object> model) {
 		int currentUserSecretLevel = AuthorityDefine.getCurrentUserSecretLevel();
 
-		List<Article> list = articleService.getListLowerThanSecretLevel(currentUserSecretLevel);
+		List<Article> list = articleService
+				.getListByCategoryIdAndLowerThanSecretLevel(categoryId, currentUserSecretLevel);
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
 		model.put("articleList", list);
+
+		List<Category> categoryList = categoryService.getAll();
+
+		model.put("categoryList", categoryList);
+		model.put("categoryId", categoryId);
 
 		//TODO 分页
 

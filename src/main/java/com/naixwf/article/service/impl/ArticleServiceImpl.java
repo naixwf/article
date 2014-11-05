@@ -108,9 +108,15 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<Article> getListLowerThanSecretLevel(int secretLevel) {
+	public List<Article> getListByCategoryIdAndLowerThanSecretLevel(Integer categoryId, int secretLevel) {
 		ArticleExample e = new ArticleExample();
-		e.createCriteria().andSecretLevelLessThanOrEqualTo(secretLevel);
+		ArticleExample.Criteria c = e.createCriteria();
+		c.andSecretLevelLessThanOrEqualTo(secretLevel);
+
+		if (categoryId != null) {
+			c.andCategoryIdEqualTo(categoryId);
+		}
+
 		e.setOrderByClause(" modify_time desc ");//按最后修改时间倒序排列
 
 		List<Article> list = articleMapper.selectByExample(e);
