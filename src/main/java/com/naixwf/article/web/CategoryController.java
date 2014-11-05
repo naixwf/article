@@ -4,6 +4,7 @@ import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.Category;
 import com.naixwf.article.service.ArticleService;
 import com.naixwf.article.service.CategoryService;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -55,8 +56,11 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(Category category) {
+		Validate.notNull(category, "参数不能全部为空");
+		Validate.notBlank(category.getCategroyName(), "类别名称不能为空");
+
 		categoryService.add(category);
-		return "redirect:/category?info" + urlEncode("添加文档分类【%s】成功", category.getCategroyName());
+		return "redirect:/category?info=" + urlEncode("添加文档分类【%s】成功", category.getCategroyName());
 	}
 
 	/**
@@ -64,6 +68,10 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(Category category) {
+		Validate.notNull(category, "参数不能全部为空");
+		Validate.notNull(category.getId(), "id不能为空");
+		Validate.notBlank(category.getCategroyName(), "类别名称不能为空"); //TODO 还应该限制长度
+
 		categoryService.modify(category);
 		return "redirect:/category?info=" + urlEncode("修改文档分类【%s】成功", category.getCategroyName());
 	}
@@ -73,6 +81,8 @@ public class CategoryController extends BaseController {
 	 */
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer categoryId) {
+		Validate.notNull(categoryId, "categoryId不能为空");
+
 		List<Article> articleList = articleService.getListByCategoryId(categoryId);
 		if (!CollectionUtils.isEmpty(articleList)) {
 			return "redirect:/category?info=" + urlEncode("该分类下有%d篇文档，不允许删除", articleList.size());

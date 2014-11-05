@@ -43,7 +43,7 @@ public enum AuthorityDefine {
 	 * @return
 	 */
 	public static Map<String, String> getMap() {
-		//TODO 这里改成自适应增减
+		//TODO 这里可以改成自适应增减
 
 		Map<String, String> map = new LinkedHashMap<String, String>();
 

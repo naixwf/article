@@ -44,7 +44,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 		article.setId(null);
 
-		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+		User user = (User) SecurityContextHolder
 				.getContext()
 				.getAuthentication()
 				.getPrincipal();
@@ -111,6 +111,7 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> getListLowerThanSecretLevel(int secretLevel) {
 		ArticleExample e = new ArticleExample();
 		e.createCriteria().andSecretLevelLessThanOrEqualTo(secretLevel);
+		e.setOrderByClause(" modify_time desc ");//按最后修改时间倒序排列
 
 		List<Article> list = articleMapper.selectByExample(e);
 		if (CollectionUtils.isEmpty(list)) {

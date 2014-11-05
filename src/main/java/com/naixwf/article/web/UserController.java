@@ -4,6 +4,7 @@ import com.naixwf.article.define.AuthorityDefine;
 import com.naixwf.article.domain.Authority;
 import com.naixwf.article.service.AuthorityService;
 import com.naixwf.article.service.UserService;
+import org.apache.commons.lang3.Validate;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,9 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(String username, String authority) {
+		Validate.notBlank(username, "username不能为空");
+		Validate.notBlank(authority, "authority不能为空");//TODO 还应该限制必须在AuthorityDefine范围内
+
 		authorityService.modify(username, authority);
 		return "redirect:/user?info=" + urlEncode("修改用户【%s】角色成功", username);
 	}

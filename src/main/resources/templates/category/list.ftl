@@ -26,7 +26,7 @@
                     <div class="modal-body">
                         <div class="input-group">
                             <input type="hidden" name="id" value="" id="categoryId"/>
-                            <input type="text" class="form-control" name="categroyName" value="" id="categroyName"/>
+                            <input type="text" class="form-control" name="categroyName" value="" id="categroyName" required/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -57,7 +57,7 @@
                 <form action="/category/add" method="POST">
                     <div class="modal-body">
                         <div class="input-group">
-                            <input type="text" class="form-control" name="categroyName" value="" id="categroyName"/>
+                            <input type="text" class="form-control" name="categroyName" value="" id="categroyName" required/>
                         </div>
                     </div>
                     <div class="modal-footer">

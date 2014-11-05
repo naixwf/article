@@ -3,17 +3,6 @@
     <link rel="stylesheet" href="/appstatic/signin.css"/>
 </head>
 <body>
-<#if (param.error)??>
-<div>
-    Invalid username and password.
-</div>
-</#if>
-
-<#if (param.logout)??>
-<div>
-    You have been logged out.
-</div>
-</#if>
 
 <div class="container">
 

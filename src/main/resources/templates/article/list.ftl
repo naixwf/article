@@ -6,7 +6,7 @@
     <!-- TODO 只有管理员显示 -->
 <@security.authorize ifAnyGranted="ROLE_ADMIN">
     <div>
-        <a href="/article/add" class="btn btn-primary">添加文档</a>
+        <a href="/article/add?info=" class="btn btn-primary">添加文档</a>
     </div>
     <hr/>
 </@security.authorize>
@@ -28,7 +28,7 @@
                         <div class="carousel-caption">
                             <h3>Article</h3>
 
-                            <p>一个基于markdown的文档管理工具</p>
+                            <p>一个基于<a href="http://wowubuntu.com/markdown/index.html">Markdown</a>的文档管理工具</p>
                         </div>
                     </div>
                     <div class="item" style="height: 250px;background: #BBBBBB;">
@@ -74,7 +74,10 @@
                 <p>
                     <code>最后修改人:</code>${item.modifierId}
                     <code>修改时间:</code>${item.modifyTime?string("yyyy-MM-dd HH:mm:ss")}
-                    <code>安全级别:</code><@map.text  source=secretLevelMap value="#{item.secretLevel}"/>
+                    <code>安全级别:</code>
+                    <#if (item.secretLevel > 0) ><kbd></#if>
+                    <@map.text  source=secretLevelMap value="#{item.secretLevel}"/>
+                    <#if (item.secretLevel > 0) ></kbd></#if>
                     <@security.authorize ifAnyGranted="ROLE_ADMIN">
                         <code><a href="/article/edit?articleId=${item.id}" target="_blank">edit</a></code>
                     </@security.authorize>
@@ -85,7 +88,7 @@
 
         <div class="col-sm-1">
         </div>
-<@security.authorize ifAnyGranted="ROLE_ANONYMOUS">
+    <@security.authorize ifAnyGranted="ROLE_ANONYMOUS">
         <div class="col-sm-2">
             <form class="form-signin" role="form" method="POST" action="/login">
                 <input type="text" name="username" class="form-control" placeholder="用户名" required autofocus>
@@ -94,7 +97,7 @@
                 <button class="btn btn-default center-block" type="submit">登陆</button>
             </form>
         </div>
-</@security.authorize>
+    </@security.authorize>
     </div>
 </div>
 <script type="text/javascript">

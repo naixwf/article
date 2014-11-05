@@ -9,7 +9,7 @@
             <label for="title" class="col-sm-2 control-label">标题</label>
 
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="title" placeholder="标题" name="title"/>
+                <input type="text" class="form-control" id="title" placeholder="标题" name="title" required/>
             </div>
         </div>
         <div class="form-group">
@@ -32,7 +32,7 @@
             <label for="content" class="col-sm-2 control-label">正文</label>
 
             <div class="col-sm-10">
-                <textarea id="content" class="form-control" rows="16" name="content"></textarea>
+                <textarea id="content" class="form-control" rows="16" name="content" required></textarea>
             </div>
         </div>
 

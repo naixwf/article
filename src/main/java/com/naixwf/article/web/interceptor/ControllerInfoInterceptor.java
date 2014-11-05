@@ -33,6 +33,7 @@ public class ControllerInfoInterceptor implements HandlerInterceptor {
 		if (!StringUtils.isEmpty(info)) {
 			modelAndView.addObject("info", info);
 		}
+		//TODO 后续可以添加warning error debug
 	}
 
 	@Override

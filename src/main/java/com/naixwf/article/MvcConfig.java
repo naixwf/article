@@ -1,5 +1,6 @@
 package com.naixwf.article;
 
+import com.naixwf.article.web.interceptor.AccessLogInterceptor;
 import com.naixwf.article.web.interceptor.ControllerInfoInterceptor;
 import com.naixwf.article.web.filter.FreemarkerFilter;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
@@ -32,6 +33,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new AccessLogInterceptor());
 		registry.addInterceptor(new ControllerInfoInterceptor());
 	}
 

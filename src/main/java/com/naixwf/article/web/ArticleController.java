@@ -7,6 +7,7 @@ import com.naixwf.article.domain.ArticleWithBLOBs;
 import com.naixwf.article.exception.BizException;
 import com.naixwf.article.service.ArticleService;
 import com.naixwf.article.service.CategoryService;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.access.annotation.Secured;
@@ -63,6 +64,7 @@ public class ArticleController extends BaseController {
 	 */
 	@RequestMapping("/view")
 	public String view(Integer articleId, Map<String, Object> model) {
+		Validate.notNull(articleId, "参数articleId不能为空");
 
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
 		model.put("categoryMap", categoryService.getCategoryMap());
@@ -91,8 +93,14 @@ public class ArticleController extends BaseController {
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(ArticleWithBLOBs article) {
+		Validate.notNull(article, "参数不能全部为空");
+		Validate.notBlank(article.getTitle(), "标题不能为空");
+		Validate.notBlank(article.getContent(), "内容不能为空");
+		Validate.notNull(article.getCategoryId(), "类别不能为空");
+		Validate.notNull(article.getSecretLevel(), "安全级别不能为空");
+
 		articleService.add(article);
-		return "redirect:view?articleId=" + article.getId() + "?info=" + urlEncode("新增文档成功");
+		return "redirect:view?articleId=" + article.getId() + "&info=" + urlEncode("新增文档成功");
 	}
 
 	/**
@@ -101,6 +109,8 @@ public class ArticleController extends BaseController {
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public String edit(Integer articleId, Map<String, Object> model) {
+		Validate.notNull(articleId, "参数articleId不能为空");
+
 		model.put("secretLevelMap", SecretLevel.getSecretLevelMap());
 		model.put("categoryMap", categoryService.getCategoryMap());
 
@@ -112,8 +122,15 @@ public class ArticleController extends BaseController {
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(ArticleWithBLOBs article) {
+		Validate.notNull(article, "参数不能全部为空");
+		Validate.notNull(article.getId(), "id不能为空");
+		Validate.notBlank(article.getTitle(), "标题不能为空");
+		Validate.notBlank(article.getContent(), "内容不能为空");
+		Validate.notNull(article.getCategoryId(), "类别不能为空");
+		Validate.notNull(article.getSecretLevel(), "安全级别不能为空");
+
 		articleService.modify(article);
-		return "redirect:view?articleId=" + article.getId() + "?info=" + urlEncode("修改文档成功");
+		return "redirect:view?articleId=" + article.getId() + "&info=" + urlEncode("修改文档成功");
 	}
 
 	/**
@@ -122,6 +139,8 @@ public class ArticleController extends BaseController {
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer articleId) {
+		Validate.notNull(articleId, "articleId不能为空");
+
 		articleService.delete(articleId);
 		return "redirect:/article?info=" + urlEncode("删除文档成功");
 	}

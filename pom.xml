@@ -31,8 +31,18 @@
 
         <sitemesh.version>3.0.0</sitemesh.version>
         <markdown4j.version>2.2-cj-1.0</markdown4j.version>
+
+        <commons-lang.version>3.2.1</commons-lang.version>
     </properties>
     <dependencies>
+
+        <!-- commons-lang -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang.version}</version>
+        </dependency>
+        <!--spring security-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-taglibs</artifactId>

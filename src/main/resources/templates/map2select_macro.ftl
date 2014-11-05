@@ -1,6 +1,6 @@
 <!-- Added by wangfei 2011-09-01 -->
-<#macro select source textId="" class="" blankText="" selected="" dataparams="" blank=true>
-	<select id="${textId}" name="${textId}" data-params="${dataparams}" class="${class}">
+<#macro select source textId="" class="" blankText="" selected="" dataparams="" blank=true required=true>
+	<select id="${textId}" name="${textId}" data-params="${dataparams}" class="${class}" <#if required>required</#if>>
 		<#if blank><option value="">${blankText}</option></#if>
 		    <#if source?exists>
     			<#list source?keys as k>
