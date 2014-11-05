@@ -22,7 +22,17 @@
 
 </head>
 <body>
-
+<!--  action完成之后的提示，读取model里的内容 -->
+<!-- TODO copy common.ftl,后续这块需要提取出来 -->
+<#if info??>
+<div class="container">
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                class="sr-only">Close</span></button>
+    ${info}
+    </div>
+</div>
+</#if>
 <sitemesh:write property='body'/>
 
 <footer role="contentinfo">

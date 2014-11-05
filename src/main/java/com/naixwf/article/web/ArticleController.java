@@ -31,7 +31,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/article")
-public class ArticleController {
+public class ArticleController extends BaseController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ArticleController.class);
 	@Resource
 	private ArticleService articleService;
@@ -91,9 +91,8 @@ public class ArticleController {
 	@Secured({ "ROLE_ADMIN" })
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String postAdd(ArticleWithBLOBs article) {
-		//TODO validate param
 		articleService.add(article);
-		return "redirect:view?articleId=" + article.getId();
+		return "redirect:view?articleId=" + article.getId() + "?info=" + urlEncode("新增文档成功");
 	}
 
 	/**
@@ -114,7 +113,7 @@ public class ArticleController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(ArticleWithBLOBs article) {
 		articleService.modify(article);
-		return "redirect:view?articleId=" + article.getId();
+		return "redirect:view?articleId=" + article.getId() + "?info=" + urlEncode("修改文档成功");
 	}
 
 	/**
@@ -124,7 +123,7 @@ public class ArticleController {
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String postDelete(Integer articleId) {
 		articleService.delete(articleId);
-		return "redirect:/article";
+		return "redirect:/article?info=" + urlEncode("删除文档成功");
 	}
 
 }

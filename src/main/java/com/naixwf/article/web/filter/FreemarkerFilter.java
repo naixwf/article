@@ -1,22 +1,16 @@
-package com.naixwf.article.web;
+package com.naixwf.article.web.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.freemarker.FreeMarkerAutoConfiguration;
-import org.springframework.jca.context.SpringContextResourceAdapter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.View;
-import org.springframework.web.servlet.ViewRendererServlet;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
-import javax.annotation.Resource;
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by wangfei on 14-11-4.

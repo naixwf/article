@@ -12,6 +12,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.net.URLEncoder;
 
 /**
  * Created by wangfei on 14-10-30.
@@ -35,11 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				).permitAll()
 				.anyRequest().fullyAuthenticated()
 				.and().formLogin().loginPage("/login")
-				.failureUrl("/login?error")
+				.failureUrl("/login?info=" + URLEncoder.encode("用户名或密码错误", "utf-8"))
 				.and().logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
-				.exceptionHandling().accessDeniedPage("/access?error");
-
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+		//				.and().exceptionHandling().accessDeniedPage("/access");//TODO 异常处理目前没有细分，全部导向error view
+		//TODO 这里为了方便开发，没有打开csrf，后续应该加上
 		http
 				.csrf().disable();
 	}

@@ -17,25 +17,17 @@
 package com.naixwf.article;
 
 import com.alibaba.druid.pool.DruidDataSource;
-import com.naixwf.article.web.FreemarkerFilter;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
-import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
-import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
-import javax.annotation.Resource;
-import javax.servlet.DispatcherType;
-import javax.servlet.Filter;
 import javax.sql.DataSource;
 import java.util.*;
 
@@ -63,7 +55,7 @@ public class ArticleApplication {
 
 	@Bean(destroyMethod = "close")
 	public DataSource dataSource() {
-
+		//TODO 这里可以放到配置文件里
 		Properties properties = new Properties();
 		String url = "jdbc:mysql://localhost/article";
 		properties = new Properties();

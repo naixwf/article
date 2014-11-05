@@ -37,22 +37,34 @@
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/article">首页</a></li>
-                 <li class="dropdown">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员权限<span class="caret"></span></a>
-                     <ul class="dropdown-menu" role="menu">
-                         <li><a href="/category">分类管理</a></li>
-                         <li><a href="/user">权限管理</a></li>
-                     </ul>
-                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">管理员权限<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="/category">分类管理</a></li>
+                        <li><a href="/user">权限管理</a></li>
+                    </ul>
+                </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a  href="/logout">登出</a></li>
+                <li><a href="/logout">登出</a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
     </div>
 </nav>
+
+<!--  action完成之后的提示，读取model里的内容 -->
+
+<#if info??>
+<div class="container">
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                class="sr-only">Close</span></button>
+    ${info}
+    </div>
+</div>
+</#if>
 
 <sitemesh:write property='body'/>
 

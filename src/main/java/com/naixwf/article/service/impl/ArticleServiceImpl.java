@@ -4,13 +4,13 @@ import com.naixwf.article.define.AuthorityDefine;
 import com.naixwf.article.domain.Article;
 import com.naixwf.article.domain.ArticleExample;
 import com.naixwf.article.domain.ArticleWithBLOBs;
-import com.naixwf.article.domain.User;
 import com.naixwf.article.persistence.ArticleMapper;
 import com.naixwf.article.service.ArticleService;
 import org.markdown4j.Markdown4jProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -80,7 +80,7 @@ public class ArticleServiceImpl implements ArticleService {
 
 	@Override
 	public void modify(ArticleWithBLOBs article) {
-		org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder
+		User user = (User) SecurityContextHolder
 				.getContext()
 				.getAuthentication()
 				.getPrincipal();
@@ -111,6 +111,19 @@ public class ArticleServiceImpl implements ArticleService {
 	public List<Article> getListLowerThanSecretLevel(int secretLevel) {
 		ArticleExample e = new ArticleExample();
 		e.createCriteria().andSecretLevelLessThanOrEqualTo(secretLevel);
+
+		List<Article> list = articleMapper.selectByExample(e);
+		if (CollectionUtils.isEmpty(list)) {
+			list = Collections.EMPTY_LIST;
+		}
+
+		return list;
+	}
+
+	@Override
+	public List<Article> getListByCategoryId(Integer categoryId) {
+		ArticleExample e = new ArticleExample();
+		e.createCriteria().andCategoryIdEqualTo(categoryId);
 
 		List<Article> list = articleMapper.selectByExample(e);
 		if (CollectionUtils.isEmpty(list)) {

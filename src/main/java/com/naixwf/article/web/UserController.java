@@ -25,7 +25,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/user")
 @Secured({ "ROLE_ADMIN" })
-public class UserController {
+public class UserController extends BaseController {
 	@Resource
 	private UserService userService;
 	@Resource
@@ -53,6 +53,6 @@ public class UserController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST)
 	public String postEdit(String username, String authority) {
 		authorityService.modify(username, authority);
-		return "redirect:/user";
+		return "redirect:/user?info=" + urlEncode("修改用户【%s】角色成功", username);
 	}
 }

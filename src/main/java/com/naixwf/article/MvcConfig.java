@@ -1,10 +1,12 @@
 package com.naixwf.article;
 
-import com.naixwf.article.web.FreemarkerFilter;
+import com.naixwf.article.web.interceptor.ControllerInfoInterceptor;
+import com.naixwf.article.web.filter.FreemarkerFilter;
 import org.sitemesh.config.ConfigurableSiteMeshFilter;
 import org.springframework.boot.context.embedded.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
@@ -26,6 +28,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
 		registry.addViewController("/login").setViewName("login");
+	}
+
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+		registry.addInterceptor(new ControllerInfoInterceptor());
 	}
 
 	@Bean

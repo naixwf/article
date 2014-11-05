@@ -63,4 +63,11 @@ public interface ArticleService {
 	 * @return 返回article.secretLevel<=secretLevel的文档列表
 	 */
 	List<Article> getListLowerThanSecretLevel(int secretLevel);
+
+	/**
+	 * 查找某一类文档
+	 * @param categoryId
+	 * @return
+	 */
+	List<Article> getListByCategoryId(Integer categoryId);
 }
